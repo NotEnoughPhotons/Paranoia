@@ -96,53 +96,56 @@
     </ItemGroup>
     <ItemGroup>
         <Reference Include="0Harmony">
-          <HintPath>Links\MelonLoader\0Harmony.dll</HintPath>
+          <HintPath>$(BONELAB_DIR)\MelonLoader\net6\0Harmony.dll</HintPath>
+        </Reference>
+        <Reference Include="0Harmony">
+            <HintPath>$(BONELAB_DIR)\MelonLoader\net6\Il2CppInterop.Runtime.dll</HintPath>
         </Reference>
         <Reference Include="Assembly-CSharp">
-          <HintPath>Links\MelonLoader\Managed\Assembly-CSharp.dll</HintPath>
+          <HintPath>$(BONELAB_DIR)\MelonLoader\Il2CppAssemblies\Assembly-CSharp.dll</HintPath>
         </Reference>
         <Reference Include="BoneLib">
-          <HintPath>Links\Mods\BoneLib.dll</HintPath>
+          <HintPath>$(BONELAB_DIR)\Mods\BoneLib.dll</HintPath>
         </Reference>
         <Reference Include="FieldInjector">
-          <HintPath>Links\Mods\FieldInjector.dll</HintPath>
+          <HintPath>$(BONELAB_DIR)\Mods\FieldInjector.dll</HintPath>
         </Reference>
         <Reference Include="Il2Cppmscorlib">
-            <HintPath>Links\MelonLoader\Managed\Il2Cppmscorlib.dll</HintPath>
+            <HintPath>$(BONELAB_DIR)\MelonLoader\Il2CppAssemblies\Il2Cppmscorlib.dll</HintPath>
         </Reference>
         <Reference Include="JeviLib">
-          <HintPath>Links\Mods\JeviLib.dll</HintPath>
+          <HintPath>$(BONELAB_DIR)\Mods\JeviLib.dll</HintPath>
         </Reference>
         <Reference Include="MelonLoader">
-            <HintPath>Links\MelonLoader\MelonLoader.dll</HintPath>
+            <HintPath>$(BONELAB_DIR)\MelonLoader\net6\MelonLoader.dll</HintPath>
         </Reference>
         <Reference Include="SLZ.Marrow">
-          <HintPath>Links\MelonLoader\Managed\SLZ.Marrow.dll</HintPath>
+          <HintPath>$(BONELAB_DIR)\MelonLoader\Il2CppAssemblies\SLZ.Marrow.dll</HintPath>
         </Reference>
         <Reference Include="SLZ.Marrow.SDK">
-          <HintPath>Links\MelonLoader\Managed\SLZ.Marrow.SDK.dll</HintPath>
+          <HintPath>$(BONELAB_DIR)\MelonLoader\Il2CppAssemblies\SLZ.Marrow.SDK.dll</HintPath>
         </Reference>
         <Reference Include="System" />
         <Reference Include="UltEvents">
-          <HintPath>Links\MelonLoader\Managed\UltEvents.dll</HintPath>
+          <HintPath>$(BONELAB_DIR)\MelonLoader\Il2CppAssemblies\UltEvents.dll</HintPath>
         </Reference>
         <Reference Include="UnhollowerBaseLib">
-            <HintPath>Links\MelonLoader\Managed\UnhollowerBaseLib.dll</HintPath>
+            <HintPath>$(BONELAB_DIR)\MelonLoader\Il2CppAssemblies\UnhollowerBaseLib.dll</HintPath>
         </Reference>
         <Reference Include="UnityEngine.AIModule">
-          <HintPath>..\..\Weather Electric\TrentBehaviour\Links\MelonLoader\Managed\UnityEngine.AIModule.dll</HintPath>
+          <HintPath>$(BONELAB_DIR)\MelonLoader\Il2CppAssemblies\UnityEngine.AIModule.dll</HintPath>
         </Reference>
         <Reference Include="UnityEngine.AudioModule">
-          <HintPath>Links\MelonLoader\Managed\UnityEngine.AudioModule.dll</HintPath>
+          <HintPath>$(BONELAB_DIR)\MelonLoader\Il2CppAssemblies\UnityEngine.AudioModule.dll</HintPath>
         </Reference>
         <Reference Include="UnityEngine.CoreModule">
-          <HintPath>Links\MelonLoader\Managed\UnityEngine.CoreModule.dll</HintPath>
+          <HintPath>$(BONELAB_DIR)\MelonLoader\Il2CppAssemblies\UnityEngine.CoreModule.dll</HintPath>
         </Reference>
         <Reference Include="UnityEngine.ParticleSystemModule">
-          <HintPath>Links\MelonLoader\Managed\UnityEngine.ParticleSystemModule.dll</HintPath>
+          <HintPath>$(BONELAB_DIR)\MelonLoader\Il2CppAssemblies\UnityEngine.ParticleSystemModule.dll</HintPath>
         </Reference>
         <Reference Include="UnityEngine.PhysicsModule">
-          <HintPath>Links\MelonLoader\Managed\UnityEngine.PhysicsModule.dll</HintPath>
+          <HintPath>$(BONELAB_DIR)\MelonLoader\Il2CppAssemblies\UnityEngine.PhysicsModule.dll</HintPath>
         </Reference>
     </ItemGroup>
 </Project>
