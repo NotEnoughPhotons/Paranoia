@@ -31,6 +31,7 @@
 *.user
 *.userosscache
 *.sln.docstates
+*.csproj.DotSettings
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
@@ -397,5 +398,5 @@ References/UnityEngine.PhysicsModule.dll
 References/UnityEngine.ParticleSystemModule.dll
 References/UnityEngine.CoreModule.dll
 References/UnityEngine.AudioModule.dll
-.idea/.idea.Paranoia/.idea/vcs.xml
-.idea/.idea.Paranoia/.idea/indexLayout.xml
+.idea/*
+.idea/*
