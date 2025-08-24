@@ -1,223 +1,186 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
-  <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Release</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{788BC472-59F7-46F6-B760-65C18BA74389}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>NEP.Paranoia</RootNamespace>
-    <AssemblyName>Paranoia</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <Deterministic>true</Deterministic>
-    <TargetFrameworkProfile />
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugSymbols>false</DebugSymbols>
-    <DebugType>None</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>$(SolutionDir)Output\</OutputPath>
-    <DefineConstants>
-    </DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <Prefer32Bit>false</Prefer32Bit>
-    <DebugSymbols>false</DebugSymbols>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="0Harmony, Version=2.9.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>E:\Steam Games\steamapps\common\BONEWORKS\BONEWORKS\MelonLoader\0Harmony.dll</HintPath>
-    </Reference>
-    <Reference Include="Assembly-CSharp, Version=3.7.1.6, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>E:\Steam Games\steamapps\common\BONEWORKS\BONEWORKS\MelonLoader\Managed\Assembly-CSharp.dll</HintPath>
-    </Reference>
-    <Reference Include="Assembly-CSharp-firstpass, Version=3.7.1.6, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>E:\Steam Games\steamapps\common\BONEWORKS\BONEWORKS\MelonLoader\Managed\Assembly-CSharp-firstpass.dll</HintPath>
-    </Reference>
-    <Reference Include="Il2Cppmscorlib, Version=3.7.1.6, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>E:\Steam Games\steamapps\common\BONEWORKS\BONEWORKS\MelonLoader\Managed\Il2Cppmscorlib.dll</HintPath>
-    </Reference>
-    <Reference Include="MelonLoader">
-      <HintPath>E:\Steam Games\steamapps\common\BONEWORKS\BONEWORKS\MelonLoader\MelonLoader.dll</HintPath>
-    </Reference>
-    <Reference Include="ModThatIsNotMod">
-      <HintPath>E:\Steam Games\steamapps\common\BONEWORKS\BONEWORKS\Mods\ModThatIsNotMod.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>E:\Steam Games\steamapps\common\BONEWORKS\BONEWORKS\UserData\paranoia\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="SteamVR, Version=3.7.1.6, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>E:\Steam Games\steamapps\common\BONEWORKS\BONEWORKS\MelonLoader\Managed\SteamVR.dll</HintPath>
-    </Reference>
-    <Reference Include="TextMeshPro-1.0.55.2017.2.0b12, Version=3.7.1.6, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>E:\Steam Games\steamapps\common\BONEWORKS\BONEWORKS\MelonLoader\Managed\TextMeshPro-1.0.55.2017.2.0b12.dll</HintPath>
-    </Reference>
-    <Reference Include="UnhollowerBaseLib, Version=0.4.13.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>E:\Steam Games\steamapps\common\BONEWORKS\BONEWORKS\MelonLoader\Managed\UnhollowerBaseLib.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine">
-      <HintPath>E:\Steam Games\steamapps\common\BONEWORKS\BONEWORKS\MelonLoader\Managed\UnityEngine.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.AIModule, Version=3.7.1.6, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>E:\Steam Games\steamapps\common\BONEWORKS\BONEWORKS\MelonLoader\Managed\UnityEngine.AIModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.AssetBundleModule, Version=3.7.1.6, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>E:\Steam Games\steamapps\common\BONEWORKS\BONEWORKS\MelonLoader\Managed\UnityEngine.AssetBundleModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.AudioModule, Version=3.7.1.6, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>E:\Steam Games\steamapps\common\BONEWORKS\BONEWORKS\MelonLoader\Managed\UnityEngine.AudioModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.CoreModule">
-      <HintPath>E:\Steam Games\steamapps\common\BONEWORKS\BONEWORKS\MelonLoader\Managed\UnityEngine.CoreModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.JSONSerializeModule, Version=3.7.1.6, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>D:\Boneworks Assemblies\UnityEngine.JSONSerializeModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.PhysicsModule, Version=3.7.1.6, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>E:\Steam Games\steamapps\common\BONEWORKS\BONEWORKS\MelonLoader\Managed\UnityEngine.PhysicsModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.VideoModule, Version=3.7.1.6, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>E:\Steam Games\steamapps\common\BONEWORKS\BONEWORKS\MelonLoader\Managed\UnityEngine.VideoModule.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Scripts\Entities\AudioMirage.cs" />
-    <Compile Include="Scripts\Entities\BaseMirage.cs" />
-    <Compile Include="Scripts\Entities\EntityFlags.cs" />
-    <Compile Include="Scripts\Entities\SpawnFlags.cs" />
-    <Compile Include="Scripts\Managers\DataReader.cs" />
-    <Compile Include="Scripts\Managers\Tick.cs" />
-    <Compile Include="Scripts\Managers\TickManager.cs" />
-    <Compile Include="Scripts\Managers\TickTemplate.cs" />
-    <Compile Include="Scripts\TickEvents\Events\AI\AILookAtCeiling.cs" />
-    <Compile Include="Scripts\TickEvents\Events\AI\DragNPCToCeiling.cs" />
-    <Compile Include="Scripts\TickEvents\Events\AI\DragRandomNPC.cs" />
-    <Compile Include="Scripts\TickEvents\Events\AI\HideAllAI.cs" />
-    <Compile Include="Scripts\TickEvents\Events\AI\LaughAtPlayer.cs" />
-    <Compile Include="Scripts\TickEvents\Events\Player\ClonePlayer.cs" />
-    <Compile Include="Scripts\TickEvents\Events\Player\DeafenPlayer.cs" />
-    <Compile Include="Scripts\TickEvents\Events\Player\FireGunInHand.cs" />
-    <Compile Include="Scripts\TickEvents\Events\Player\EjectMagazine.cs" />
-    <Compile Include="Scripts\TickEvents\Events\Player\GrabPlayer.cs" />
-    <Compile Include="Scripts\TickEvents\Events\Player\HandTremble.cs" />
-    <Compile Include="Scripts\TickEvents\Events\Player\Paralysis.cs" />
-    <Compile Include="Scripts\TickEvents\Events\World\ChangeClipboard.cs" />
-    <Compile Include="Scripts\TickEvents\Events\World\ChangeHoloSign.cs" />
-    <Compile Include="Scripts\TickEvents\Events\World\ChangeInsanity.cs" />
-    <Compile Include="Scripts\TickEvents\Events\World\ChangeRNG.cs" />
-    <Compile Include="Scripts\TickEvents\Events\Player\DisableNimbus.cs" />
-    <Compile Include="Scripts\TickEvents\Events\Player\DisableWasp.cs" />
-    <Compile Include="Scripts\TickEvents\Events\Player\DropHeadItem.cs" />
-    <Compile Include="Scripts\TickEvents\Events\AI\KillAI.cs" />
-    <Compile Include="Scripts\TickEvents\Events\World\CloseGame.cs" />
-    <Compile Include="Scripts\TickEvents\Events\World\CursedDoorSpawn.cs" />
-    <Compile Include="Scripts\TickEvents\Events\World\FireGun.cs" />
-    <Compile Include="Scripts\TickEvents\Events\World\FlickerFlashlights.cs" />
-    <Compile Include="Scripts\TickEvents\Events\World\FlingRandomObject.cs" />
-    <Compile Include="Scripts\TickEvents\Events\World\HideRandomItem.cs" />
-    <Compile Include="Scripts\TickEvents\Events\World\LightFlicker.cs" />
-    <Compile Include="Scripts\TickEvents\Events\AI\MoveAIToPlayer.cs" />
-    <Compile Include="Scripts\TickEvents\Events\AI\MoveAIToRadio.cs" />
-    <Compile Include="Scripts\TickEvents\Events\World\RemoveRandomObject.cs" />
-    <Compile Include="Scripts\TickEvents\Events\World\SilenceGameAmbience.cs" />
-    <Compile Include="Scripts\TickEvents\Events\World\SpawnInvisibleForce.cs" />
-    <Compile Include="Scripts\TickEvents\Events\World\SpawnMonitor.cs" />
-    <Compile Include="Scripts\TickEvents\Events\AI\TPose.cs" />
-    <Compile Include="Scripts\TickEvents\Events\World\TestFunc.cs" />
-    <Compile Include="Scripts\TickEvents\Mirages\SpawnLifeForce.cs" />
-    <Compile Include="Scripts\TickEvents\Mirages\SpawnRadio.cs" />
-    <Compile Include="Scripts\TickEvents\Mirages\SpawnCeilingMan.cs" />
-    <Compile Include="Scripts\TickEvents\Mirages\SpawnWhiteFaceLure.cs" />
-    <Compile Include="Scripts\TickEvents\Mirages\SpawnLure.cs" />
-    <Compile Include="Scripts\TickEvents\Mirages\SpawnAmbience.cs" />
-    <Compile Include="Scripts\TickEvents\Mirages\SpawnDarkVoice.cs" />
-    <Compile Include="Scripts\TickEvents\Mirages\SpawnParalyzer.cs" />
-    <Compile Include="Scripts\TickEvents\Mirages\SpawnSjasFace.cs" />
-    <Compile Include="Scripts\TickEvents\Mirages\SpawnWhiteFace.cs" />
-    <Compile Include="Scripts\TickEvents\Mirages\SpawnUboa.cs" />
-    <Compile Include="Scripts\TickEvents\Mirages\SpawnTwinEyes.cs" />
-    <Compile Include="Scripts\TickEvents\Mirages\SpawnStaringMan.cs" />
-    <Compile Include="Scripts\TickEvents\Mirages\SpawnShadowMan.cs" />
-    <Compile Include="Scripts\TickEvents\Mirages\SpawnShadowChaser.cs" />
-    <Compile Include="Scripts\TickEvents\Mirages\SpawnChaser.cs" />
-    <Compile Include="Scripts\TickEvents\ParanoiaEvent.cs" />
-    <Compile Include="Scripts\Utilities\HMDType.cs" />
-    <Compile Include="Scripts\Note00001.cs" />
-    <Compile Include="Scripts\Managers\GameManager.cs" />
-    <Compile Include="Scripts\Utilities\MapLevel.cs" />
-    <Compile Include="Scripts\Utilities\Utilities.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Main.cs" />
-    <Compile Include="Scripts\Entities\SpawnCircle.cs" />
-    <Compile Include="Scripts\Utilities\RigType.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Scripts\TickEvents\Events\VFX\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="json\Documentation.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="json\AudioHallucination\Ambience.json" />
-    <None Include="json\AudioHallucination\Chaser.json" />
-    <None Include="json\AudioHallucination\CryingEntity.json" />
-    <None Include="json\AudioHallucination\DarkVoice.json" />
-    <None Include="json\AudioHallucination\Paralyzer.json" />
-    <None Include="json\AudioHallucination\Radio.json" />
-    <None Include="json\AudioHallucination\SjasFace.json" />
-    <None Include="json\AudioHallucination\TeleportingEntity.json" />
-    <None Include="json\BaseHallucination\CeilingMan.json" />
-    <None Include="json\BaseHallucination\CursedDoor.json" />
-    <None Include="json\BaseHallucination\FordScaling.json" />
-    <None Include="json\BaseHallucination\InvisibleForce.json" />
-    <None Include="json\BaseHallucination\Observer.json" />
-    <None Include="json\BaseHallucination\ShadowMan.json" />
-    <None Include="json\BaseHallucination\ShadowManChaser.json" />
-    <None Include="json\BaseHallucination\StaringMan.json" />
-    <None Include="json\BaseHallucination\StaringManFast.json" />
-    <None Include="json\BaseHallucination\TestWeepingAngel.json" />
-    <None Include="json\Ticks\backup\ticks.json" />
-    <None Include="json\Ticks\DragNPCToCeiling.json" />
-    <None Include="json\Ticks\DragRandomNPC.json" />
-    <None Include="json\Ticks\FireGunInHand.json" />
-    <None Include="json\Ticks\FireGunWorld.json" />
-    <None Include="json\Ticks\FlingRandomObject.json" />
-    <None Include="json\Ticks\LaughAtPlayer.json" />
-    <None Include="json\Ticks\SpawnAmbience.json" />
-    <None Include="json\Ticks\SpawnChaser.json" />
-    <None Include="json\Ticks\SpawnDarkVoice.json" />
-    <None Include="json\Ticks\SpawnLure.json" />
-    <None Include="json\Ticks\SpawnShadowMan.json" />
-    <None Include="json\Ticks\SpawnShadowManChaser.json" />
-    <None Include="json\Ticks\SpawnSjasFace.json" />
-    <None Include="json\Ticks\SpawnStaringMan.json" />
-    <None Include="json\Ticks\SpawnTwinEyes.json" />
-    <None Include="json\Ticks\SpawnWhiteFace.json" />
-    <None Include="json\Ticks\SpawnWhiteFaceLure.json" />
-    <None Include="json\Ticks\ticks.json" />
-    <None Include="json\Ticks\TPose.json" />
-    <None Include="json\Ticks\UpdateInsanity.json" />
-    <None Include="json\Ticks\UpdateRNG.json" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PostBuildEvent>COPY "$(TargetPath)" "E:\Steam Games\steamapps\common\BONEWORKS\BONEWORKS\Mods"
-"E:\Steam Games\steamapps\common\BONEWORKS\BONEWORKS\BONEWORKS.exe"</PostBuildEvent>
-  </PropertyGroup>
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>disable</Nullable>
+		<RootNamespace>Paranoia</RootNamespace>
+		<LangVersion>default</LangVersion>
+		<IsPackable>false</IsPackable>
+		<AssemblyVersion>1.0.0.0</AssemblyVersion>
+		<FileVersion>1.0.0.0</FileVersion>
+		<NeutralLanguage>en-US</NeutralLanguage>
+		<AssemblyName>Paranoia</AssemblyName>
+		<LangVersion>latest</LangVersion>
+		<ImplicitUsings>enable</ImplicitUsings>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Reference Include="Assembly-CSharp">
+			<HintPath>$(BONELAB_DIR)\MelonLoader\Il2CppAssemblies\Assembly-CSharp.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2Cppmscorlib">
+			<HintPath>$(BONELAB_DIR)\MelonLoader\Il2CppAssemblies\Il2Cppmscorlib.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2CppRootMotion">
+			<HintPath>$(BONELAB_DIR)\MelonLoader\Il2CppAssemblies\Il2CppRootMotion.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2CppSLZ.Algorithms">
+			<HintPath>$(BONELAB_DIR)\MelonLoader\Il2CppAssemblies\Il2CppSLZ.Algorithms.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2CppSLZ.Algorithms.Unity">
+			<HintPath>$(BONELAB_DIR)\MelonLoader\Il2CppAssemblies\Il2CppSLZ.Algorithms.Unity.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2CppSLZ.Marrow">
+			<HintPath>$(BONELAB_DIR)\MelonLoader\Il2CppAssemblies\Il2CppSLZ.Marrow.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2CppSLZ.Marrow.VoidLogic.Core">
+			<HintPath>$(BONELAB_DIR)\MelonLoader\Il2CppAssemblies\Il2CppSLZ.Marrow.VoidLogic.Core.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2CppSLZ.Marrow.VoidLogic.Engine">
+			<HintPath>$(BONELAB_DIR)\MelonLoader\Il2CppAssemblies\Il2CppSLZ.Marrow.VoidLogic.Engine.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2CppSystem.Core">
+			<HintPath>$(BONELAB_DIR)\MelonLoader\Il2CppAssemblies\Il2CppSystem.Core.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2CppSystem">
+			<HintPath>$(BONELAB_DIR)\MelonLoader\Il2CppAssemblies\Il2CppSystem.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2CppSystem.Xml.Linq">
+			<HintPath>$(BONELAB_DIR)\MelonLoader\Il2CppAssemblies\Il2CppSystem.Xml.Linq.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2CppUltEvents">
+			<HintPath>$(BONELAB_DIR)\MelonLoader\Il2CppAssemblies\Il2CppUltEvents.dll</HintPath>
+		</Reference>
+		<Reference Include="Unity.TextMeshPro">
+			<HintPath>$(BONELAB_DIR)\MelonLoader\Il2CppAssemblies\Unity.TextMeshPro.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.AIModule">
+			<HintPath>$(BONELAB_DIR)\MelonLoader\Il2CppAssemblies\UnityEngine.AIModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.AnimationModule">
+			<HintPath>$(BONELAB_DIR)\MelonLoader\Il2CppAssemblies\UnityEngine.AnimationModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.AssetBundleModule">
+			<HintPath>$(BONELAB_DIR)\MelonLoader\Il2CppAssemblies\UnityEngine.AssetBundleModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.AudioModule">
+			<HintPath>$(BONELAB_DIR)\MelonLoader\Il2CppAssemblies\UnityEngine.AudioModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.CoreModule">
+			<HintPath>$(BONELAB_DIR)\MelonLoader\Il2CppAssemblies\UnityEngine.CoreModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine">
+			<HintPath>$(BONELAB_DIR)\MelonLoader\Il2CppAssemblies\UnityEngine.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.ImageConversionModule">
+			<HintPath>$(BONELAB_DIR)\MelonLoader\Il2CppAssemblies\UnityEngine.ImageConversionModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.InputLegacyModule">
+			<HintPath>$(BONELAB_DIR)\MelonLoader\Il2CppAssemblies\UnityEngine.InputLegacyModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.InputModule">
+			<HintPath>$(BONELAB_DIR)\MelonLoader\Il2CppAssemblies\UnityEngine.InputModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.ParticleSystemModule">
+			<HintPath>$(BONELAB_DIR)\MelonLoader\Il2CppAssemblies\UnityEngine.ParticleSystemModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.PhysicsModule">
+			<HintPath>$(BONELAB_DIR)\MelonLoader\Il2CppAssemblies\UnityEngine.PhysicsModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.UI">
+			<HintPath>$(BONELAB_DIR)\MelonLoader\Il2CppAssemblies\UnityEngine.UI.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.UIElementsModule">
+			<HintPath>$(BONELAB_DIR)\MelonLoader\Il2CppAssemblies\UnityEngine.UIElementsModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.UIElementsNativeModule">
+			<HintPath>$(BONELAB_DIR)\MelonLoader\Il2CppAssemblies\UnityEngine.UIElementsNativeModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.UIModule">
+			<HintPath>$(BONELAB_DIR)\MelonLoader\Il2CppAssemblies\UnityEngine.UIModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.VideoModule">
+			<HintPath>$(BONELAB_DIR)\MelonLoader\Il2CppAssemblies\UnityEngine.VideoModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.XRModule">
+			<HintPath>$(BONELAB_DIR)\MelonLoader\Il2CppAssemblies\UnityEngine.XRModule.dll</HintPath>
+		</Reference>
+		<Reference Include="MelonLoader">
+			<HintPath>$(BONELAB_DIR)\MelonLoader\net6\MelonLoader.dll</HintPath>
+		</Reference>
+		<Reference Include="0Harmony">
+			<HintPath>$(BONELAB_DIR)\MelonLoader\net6\0Harmony.dll</HintPath>
+		</Reference>
+		<Reference Include="BoneLib">
+			<HintPath>$(BONELAB_DIR)\Mods\BoneLib.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2CppInterop.Runtime">
+			<HintPath>$(BONELAB_DIR)\MelonLoader\net6\Il2CppInterop.Runtime.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2CppInterop.Common">
+			<HintPath>$(BONELAB_DIR)\MelonLoader\net6\Il2CppInterop.Common.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Include="Main.cs" />
+	  <Compile Include="Scripts\Audio\AudioBank.cs" />
+	  <Compile Include="Scripts\Entities\Ambient.cs" />
+	  <Compile Include="Scripts\Entities\CeilingMan.cs" />
+	  <Compile Include="Scripts\Entities\Chaser.cs" />
+	  <Compile Include="Scripts\Entities\CryingEntity.cs" />
+	  <Compile Include="Scripts\Entities\CursedDoorController.cs" />
+	  <Compile Include="Scripts\Entities\DarkVoice.cs" />
+	  <Compile Include="Scripts\Entities\Entity.cs" />
+	  <Compile Include="Scripts\Entities\EntityFlags.cs" />
+	  <Compile Include="Scripts\Entities\LifeForce.cs" />
+	  <Compile Include="Scripts\Entities\MonitorVideo.cs" />
+	  <Compile Include="Scripts\Entities\Paralyzer.cs" />
+	  <Compile Include="Scripts\Entities\Radio.cs" />
+	  <Compile Include="Scripts\Entities\ShadowPerson.cs" />
+	  <Compile Include="Scripts\Entities\SjasFace.cs" />
+	  <Compile Include="Scripts\Entities\SpawnFlags.cs" />
+	  <Compile Include="Scripts\Entities\StaringMan.cs" />
+	  <Compile Include="Scripts\Entities\GrayMan.cs" />
+	  <Compile Include="Scripts\Entities\Terror.cs" />
+	  <Compile Include="Scripts\Events\AI\AILookAtCeiling.cs" />
+	  <Compile Include="Scripts\Events\AI\DragNPCToCeiling.cs" />
+	  <Compile Include="Scripts\Events\AI\DragRandomNPC.cs" />
+	  <Compile Include="Scripts\Events\AI\HideAllAI.cs" />
+	  <Compile Include="Scripts\Events\AI\KillAI.cs" />
+	  <Compile Include="Scripts\Events\AI\LaughAtPlayer.cs" />
+	  <Compile Include="Scripts\Events\AI\MoveAIToPlayer.cs" />
+	  <Compile Include="Scripts\Events\AI\MoveAIToRadio.cs" />
+	  <Compile Include="Scripts\Events\AI\TPose.cs" />
+	  <Compile Include="Scripts\Events\Spawners\SpawnEntity.cs" />
+	  <Compile Include="Scripts\Events\ParanoiaEvent.cs" />
+	  <Compile Include="Scripts\Events\Player\ClonePlayer.cs" />
+	  <Compile Include="Scripts\Events\Player\DeafenPlayer.cs" />
+	  <Compile Include="Scripts\Events\Player\DisableNimbus.cs" />
+	  <Compile Include="Scripts\Events\Player\EjectMagazine.cs" />
+	  <Compile Include="Scripts\Events\Player\FireGunInHand.cs" />
+	  <Compile Include="Scripts\Events\Player\GrabPlayer.cs" />
+	  <Compile Include="Scripts\Events\Player\HandTremble.cs" />
+	  <Compile Include="Scripts\Events\World\ChangeInsanity.cs" />
+	  <Compile Include="Scripts\Events\World\ChangeRNG.cs" />
+	  <Compile Include="Scripts\Events\World\CloseGame.cs" />
+	  <Compile Include="Scripts\Events\World\CursedDoorSpawn.cs" />
+	  <Compile Include="Scripts\Events\World\FireGun.cs" />
+	  <Compile Include="Scripts\Events\World\FlingRandomObject.cs" />
+	  <Compile Include="Scripts\Events\World\RemoveRandomObject.cs" />
+	  <Compile Include="Scripts\Events\World\SilenceGameAmbience.cs" />
+	  <Compile Include="Scripts\Extensions\CacheExtensions.cs" />
+	  <Compile Include="Scripts\Managers\DataReader.cs" />
+	  <Compile Include="Scripts\Managers\ParanoiaDirector.cs" />
+	  <Compile Include="Scripts\Utilities\Utilities.cs" />
+	</ItemGroup>
+
+	<PropertyGroup>
+		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+		<EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+	</PropertyGroup>
+	
+	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
+		<Exec Command="COPY &quot;$(TargetPath)&quot; &quot;$(BONELAB_DIR)\Mods&quot;" />
+	</Target>
 </Project>
