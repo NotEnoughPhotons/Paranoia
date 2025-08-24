@@ -2,20 +2,20 @@
 
 ## Description:
 
-#### This is the official source code for the BONEWORKS mod, Paranoia.
+#### This is the official source code for the BONELAB mod, Paranoia.
 
-#### Paranoia is an experimental horror mod for BONEWORKS' Blankbox level. All code in this project is subject to change with time.
+#### Paranoia is an experimental horror mod for BONELAB, with scripts integrated into Marrow SDK. All code in this project is subject to change with time.
 
 ## Contents:
 
 |   Folder   	| Description                                                                      	|
 |:----------:	|----------------------------------------------------------------------------------	|
-| Entities   	| Contains all base hallucination classes and entities.                            	|
-| Managers   	| Contains the manager and the tick class for the mod when you load into Blankbox. 	|
-| TickEvents 	| Contains all events that can be executed when a tick finishes.                   	|
-| Utiltiies  	| Contains helper methods for easier developments.                                 	|
+| Audio       | Audio management and bundle audio loading functions.                              |
+| Entities   	| Contains all entities and subtypes.                                             	|
+| Events    	| Contains all events that can be executed when a tick finishes.                   	|
+| Extensions  | Contains extension functions to aid in optimization/development.                  |
+| Managers   	| Contains the game manager and other data manager functionality.                 	|
+| Utilities   | Helper functions for easy development.                            	              |
 
 ## Licensing/Credits:
-
-**Paranoia** is licensed under the Apache License, Version 2.0. See [LICENSE](https://github.com/LavaGang/TestMod/blob/master/LICENSE.md) for the full License.
-Paranoia is also built off of MelonLoader's TestMod.
+**Paranoia** is licensed under the MIT License.
