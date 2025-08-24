@@ -1,4 +1,4 @@
-![Paranoia - An experimental horror mod for BONEWORKS.](https://i.imgur.com/F7dsyJn.png)
+![Paranoia - An experimental horror mod for BONELAB.](https://i.imgur.com/F7dsyJn.png)
 
 ## Description:
 
@@ -10,12 +10,12 @@
 
 |   Folder   	| Description                                                                      	|
 |:----------:	|----------------------------------------------------------------------------------	|
-| Entities   	| Contains all base hallucination classes and entities.                            	|
+| Audio       | Audio management and bundle audio loading functions.                              |
+| Entities   	| Contains all entities and subtypes.                                             	|
 | Events    	| Contains all events that can be executed when a tick finishes.                   	|
-| Managers   	| Contains the manager and the tick class for the mod when you load into Blankbox. 	|
-| Helpers   	| Contains helper methods for easier developments.                                 	|
+| Extensions  | Contains extension functions to aid in optimization/development.                  |
+| Managers   	| Contains the game manager and other data manager functionality.                 	|
+| Utilities   | Helper functions for easy development.                            	              |
 
 ## Licensing/Credits:
-
-**Paranoia** is licensed under the Apache License, Version 2.0. See [LICENSE](https://github.com/LavaGang/TestMod/blob/master/LICENSE.md) for the full License.
-Paranoia is also built off of MelonLoader's TestMod.
+**Paranoia** is licensed under the MIT License.
