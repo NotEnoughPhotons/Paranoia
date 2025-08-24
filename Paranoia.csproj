@@ -175,6 +175,18 @@
 	  <Compile Include="Scripts\Utilities\Utilities.cs" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <EmbeddedResource Remove="Staging\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="Staging\**" />
+	  <None Remove="README.md" />
+	  <None Remove="LICENSE.md" />
+	  <None Remove=".gitignore" />
+	  <None Remove=".gitattributes" />
+	</ItemGroup>
+
 	<PropertyGroup>
 		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
 		<EnableDefaultCompileItems>false</EnableDefaultCompileItems>
