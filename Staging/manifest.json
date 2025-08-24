@@ -1,10 +1,9 @@
 {
-    "name": "Paranoia",
-    "version_number": "1.0.0",
+    "name": "paranoia",
+    "version_number": "4.0.0",
     "website_url": "https://github.com/Not-Enough-Photons/Paranoia/tree/marrow",
-    "description": "There's something hostile out there.",
+    "description": "I told you not to.",
     "dependencies": [
-		"gnonme-BoneLib-2.4.0",
-		"extraes-JeviLibBL-2.2.1"
+		"gnonme-BoneLib-3.1.2"
     ]
 }
