@@ -9,6 +9,8 @@ namespace NEP.Paranoia.Events.AI
     {
         public override void Start()
         {
+            SetInsanityLevel(1f);
+            
             AIBrain[] brains = Utilities.Utilities.FindAIBrains();
 
             if(brains == null || brains.Length == 0) { return; }

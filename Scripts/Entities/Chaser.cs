@@ -9,11 +9,13 @@ namespace NEP.Paranoia.Entities
     {
         public override void EntityStart()
         {
+            base.EntityStart();
+            
             UseAudio();
             
             SetVolume(0.75f);
             SetLooping(true);
-            SetSpatial(1f);
+            SetSpatial(0.85f);
             
             FaceTarget();
             Emit(AudioBank.Chaser);

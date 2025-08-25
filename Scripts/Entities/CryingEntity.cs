@@ -9,6 +9,8 @@ namespace NEP.Paranoia.Entities
     {
         public override void EntityStart()
         {
+            base.EntityStart();
+            
             UseAudio();
             SetLooping(true);
             Emit(AudioBank.Crying);

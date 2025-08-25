@@ -11,6 +11,8 @@ namespace NEP.Paranoia.Entities
     {
         public override void EntityStart()
         {
+            base.EntityStart();
+            
             UseAudio();
             SetSpatial(0f);
             Emit(AudioBank.Ambience);

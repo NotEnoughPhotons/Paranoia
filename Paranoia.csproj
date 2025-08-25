@@ -6,12 +6,13 @@
 		<RootNamespace>Paranoia</RootNamespace>
 		<LangVersion>default</LangVersion>
 		<IsPackable>false</IsPackable>
-		<AssemblyVersion>1.0.0.0</AssemblyVersion>
-		<FileVersion>1.0.0.0</FileVersion>
+		<AssemblyVersion>4.0.0.0</AssemblyVersion>
+		<FileVersion>4.0.0.0</FileVersion>
 		<NeutralLanguage>en-US</NeutralLanguage>
 		<AssemblyName>Paranoia</AssemblyName>
 		<LangVersion>latest</LangVersion>
 		<ImplicitUsings>enable</ImplicitUsings>
+		<Company>NEP</Company>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -124,6 +125,7 @@
 
 	<ItemGroup>
 	  <Compile Include="Main.cs" />
+	  <Compile Include="Properties\AssemblyInfo.cs" />
 	  <Compile Include="Scripts\Audio\AudioBank.cs" />
 	  <Compile Include="Scripts\Entities\Ambient.cs" />
 	  <Compile Include="Scripts\Entities\CeilingMan.cs" />
@@ -137,6 +139,7 @@
 	  <Compile Include="Scripts\Entities\MonitorVideo.cs" />
 	  <Compile Include="Scripts\Entities\Paralyzer.cs" />
 	  <Compile Include="Scripts\Entities\Radio.cs" />
+	  <Compile Include="Scripts\Entities\Ringer.cs" />
 	  <Compile Include="Scripts\Entities\ShadowPerson.cs" />
 	  <Compile Include="Scripts\Entities\SjasFace.cs" />
 	  <Compile Include="Scripts\Entities\SpawnFlags.cs" />
@@ -152,6 +155,7 @@
 	  <Compile Include="Scripts\Events\AI\MoveAIToPlayer.cs" />
 	  <Compile Include="Scripts\Events\AI\MoveAIToRadio.cs" />
 	  <Compile Include="Scripts\Events\AI\TPose.cs" />
+	  <Compile Include="Scripts\Events\Player\ShutdownPlayer.cs" />
 	  <Compile Include="Scripts\Events\Spawners\SpawnEntity.cs" />
 	  <Compile Include="Scripts\Events\ParanoiaEvent.cs" />
 	  <Compile Include="Scripts\Events\Player\ClonePlayer.cs" />

@@ -11,6 +11,8 @@ namespace NEP.Paranoia.Entities
         
         public override void EntityStart()
         {
+            base.EntityStart();
+            
             SetPosition(AroundTarget(50f));
             m_speed = 50f;
 

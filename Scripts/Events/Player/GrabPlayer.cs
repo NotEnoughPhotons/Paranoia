@@ -11,8 +11,11 @@ namespace NEP.Paranoia.Events.Player
         private float m_initialDelayTimer = 0f;
         private float m_initialDelay = 0f;
 
+        private float m_delayDragTimer = 0f;
+        private float m_delayDragMax = 3f;
+
         private float m_timer = 0f;
-        private float m_duration = 7f;
+        private float m_duration = 13f;
 
         private float m_force;
         private Vector3 m_direction;
@@ -21,6 +24,8 @@ namespace NEP.Paranoia.Events.Player
         
         public override void Start()
         {
+            base.Start();
+            
             // Get physics rig
             PhysicsRig rig = BoneLib.Player.PhysicsRig;
 
@@ -37,7 +42,9 @@ namespace NEP.Paranoia.Events.Player
             m_initialDelay = 5f;
             
             m_direction = Vector3.up + (Random.onUnitSphere * 10f);
-            m_force = Random.Range(50f, 100f);
+            m_force = Random.Range(150f, 200f);
+
+            m_delayDragMax = Random.Range(1f, 5f);
         }
 
         public override void Update()
@@ -52,6 +59,12 @@ namespace NEP.Paranoia.Events.Player
             //AudioSource.PlayClipAtPoint(Paranoia.instance.grabSounds[Random.Range(0, Paranoia.instance.grabSounds.Count)], part.position);
             
             ParanoiaDirector.RagdollPlayer();
+
+            if (m_delayDragTimer < m_delayDragMax)
+            {
+                m_delayDragTimer += Time.deltaTime;
+                return;
+            }
             
             m_limb.AddForce(m_direction * m_force, ForceMode.Acceleration);
 
@@ -60,8 +73,18 @@ namespace NEP.Paranoia.Events.Player
                 m_timer += Time.deltaTime;
                 return;
             }
-            
+
+            Stop();
+        }
+
+        public override void Stop()
+        {
+            base.Stop();
             ParanoiaDirector.UnRagdollPlayer();
+            
+            m_timer = 0f;
+            m_initialDelayTimer = 0f;
+            m_delayDragTimer = 0f;
         }
     }
 }

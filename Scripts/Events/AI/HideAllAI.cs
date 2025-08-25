@@ -7,14 +7,15 @@ namespace NEP.Paranoia.Events.AI
     {
         public override void Start()
         {
-            AIBrain[] brains = Utilities.Utilities.FindAIBrains();
+            /*AIBrain[] brains = Utilities.Utilities.FindAIBrains();
 
             if(brains == null) { return; }
+            */
 
-            foreach(AIBrain brain in brains)
+            /*foreach(AIBrain brain in brains)
             {
                 brain.gameObject.SetActive(false);
-            }
+            }*/
         }
     }
 }

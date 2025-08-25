@@ -9,6 +9,8 @@ namespace NEP.Paranoia.Events.AI
     {
         public override void Start()
         {
+            SetInsanityLevel(2f);
+            
             AIBrain[] brains = Utilities.Utilities.FindAIBrains();
 
             foreach(AIBrain brain in brains)

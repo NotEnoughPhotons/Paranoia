@@ -65,6 +65,13 @@ namespace NEP.Paranoia.Entities
         {
             return RandomCirclePoint(m_targetTransform.position, radius);
         }
+
+        private void Update()
+        {
+            m_position = transform.position;
+            m_scale = transform.localScale;
+            EntityUpdate();
+        }
         
         protected virtual void Awake()
         {
@@ -73,6 +80,9 @@ namespace NEP.Paranoia.Entities
             m_timestamps = new List<AudioTimeStamp>();
         }
 
+        private void OnEnable() => EntityStart();
+        private void OnDisable() => EntityStop();
+        
         public virtual void EntityStart()
         {
             m_target = Player.RigManager;
@@ -85,11 +95,7 @@ namespace NEP.Paranoia.Entities
             m_targetTransform = null;
         }
 
-        protected virtual void EntityUpdate()
-        {
-            m_position = transform.position;
-            m_scale = transform.localScale;
-        }
+        protected virtual void EntityUpdate() { }
 
         protected void Appear() => gameObject.SetActive(true);
         
@@ -113,7 +119,7 @@ namespace NEP.Paranoia.Entities
 
         protected bool BeingLookedAt()
         {
-            return Vector3.Dot(m_targetTransform.forward, transform.forward) >= 0.5f;
+            return Vector3.Dot(m_targetTransform.forward, transform.forward) <= 0.5f;
         }
         
         protected void SetPosition(Vector3 position)
@@ -123,7 +129,7 @@ namespace NEP.Paranoia.Entities
         
         protected void Move()
         {
-            transform.position += transform.forward * m_speed * Time.deltaTime;
+            transform.position += transform.forward * m_speed;
         }
 
         protected void TakeDamage(float damage)
@@ -167,6 +173,12 @@ namespace NEP.Paranoia.Entities
         {
             if (!m_source)
                 return;
+
+            if (clip == null)
+                return;
+
+            if (m_source.isPlaying)
+                m_source.Stop();
             
             m_source.clip = clip;
             m_source.Play();
@@ -175,6 +187,9 @@ namespace NEP.Paranoia.Entities
         protected void Emit(AudioClip[] clips)
         {
             if (!m_source)
+                return;
+         
+            if (clips == null)
                 return;
             
             AudioClip random = clips[UnityEngine.Random.Range(0, clips.Length)];
@@ -213,6 +228,22 @@ namespace NEP.Paranoia.Entities
                 return;
             
             m_source.loop = loop;
+        }
+
+        protected void SetMinDistance(float distance)
+        {
+            if (!m_source)
+                return;
+            
+            m_source.minDistance = distance;
+        }
+        
+        protected void SetMaxDistance(float distance)
+        {
+            if (!m_source)
+                return;
+            
+            m_source.maxDistance = distance;
         }
         
         private void AddAudioTimestamp(AudioTimeStamp stamp)

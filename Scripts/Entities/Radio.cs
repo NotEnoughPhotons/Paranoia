@@ -14,6 +14,8 @@ namespace NEP.Paranoia.Entities
         
         public override void EntityStart()
         {
+            base.EntityStart();
+            
             UseAudio();
             SetPitch(Random.Range(0.85f, 1f));
             

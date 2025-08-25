@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Reflection.Metadata.Ecma335;
+using UnityEngine;
 
 using MelonLoader;
 
@@ -17,15 +18,16 @@ namespace NEP.Paranoia.Entities
         
         public override void EntityStart()
         {
+            base.EntityStart();
+            
             UseAudio();
             SetSpatial(0.75f);
-            SetPitch(Random.Range(0.85f, 1f));
             
             Emit(AudioBank.Paralyzer);
             
             // TODO:
             // Account for other noises
-            m_nextMove = AudioBank.Paralyzer[0].length;
+            m_nextMove = AudioBank.Paralyzer.length;
 
             ParanoiaDirector.FreezePlayer();
 
@@ -37,7 +39,11 @@ namespace NEP.Paranoia.Entities
 
         protected override void EntityUpdate()
         {
+            base.EntityUpdate();
+            
             FaceTarget();
+
+            m_timer += Time.deltaTime;
 
             if (m_timer >= m_nextMove)
             {

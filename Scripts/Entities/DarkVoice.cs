@@ -9,6 +9,8 @@ namespace NEP.Paranoia.Entities
     {
         public override void EntityStart()
         {
+            base.EntityStart();
+            
             UseAudio();
             Emit(AudioBank.DarkVoice);
             SetPosition(AroundTarget(0.1f));

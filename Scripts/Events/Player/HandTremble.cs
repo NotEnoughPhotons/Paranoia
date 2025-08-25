@@ -16,10 +16,15 @@ namespace NEP.Paranoia.Events.Player
         
         public override void Start()
         {
+            base.Start();
+
+            m_timer = 0f;
+            m_duration = 0f;
+            
             PhysicsRig physicsRig = BoneLib.Player.PhysicsRig;
 
-            Rigidbody m_leftHand = physicsRig?.leftHand.rb;
-            Rigidbody m_rightHand = physicsRig?.rightHand.rb;
+            m_leftHand = physicsRig.leftHand.rb;
+            m_rightHand = physicsRig.rightHand.rb;
 
             if(m_leftHand == null || m_rightHand == null) { return; }
 
@@ -33,6 +38,7 @@ namespace NEP.Paranoia.Events.Player
             if (m_timer >= m_duration)
             {
                 m_timer = 0f;
+                Stop();
                 return;
             }
             

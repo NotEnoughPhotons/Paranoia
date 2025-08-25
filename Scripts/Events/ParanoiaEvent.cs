@@ -4,10 +4,29 @@ namespace NEP.Paranoia.Events
 {
     public abstract class ParanoiaEvent
     {
-        public virtual void Start() { }
+        public bool Started => m_started;
         
-        public virtual void Update() { }
+        private bool m_started;
+        private float m_insanityLevel;
 
-        public virtual void Stop() { }
+        public virtual void Start()
+        {
+            m_started = true;
+        }
+
+        public virtual void Update()
+        {
+            
+        }
+
+        public virtual void Stop()
+        {
+            m_started = false;
+        }
+
+        public void SetInsanityLevel(float insanityLevel)
+        {
+            m_insanityLevel = insanityLevel;
+        }
     }
 }

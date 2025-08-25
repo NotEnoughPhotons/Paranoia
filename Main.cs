@@ -1,4 +1,7 @@
-﻿using MelonLoader;
+﻿using Il2CppSLZ.Marrow.Warehouse;
+using MelonLoader;
+using NEP.Paranoia.Audio;
+using NEP.Paranoia.Managers;
 
 namespace NEP.Paranoia
 {
@@ -21,8 +24,19 @@ namespace NEP.Paranoia
         public override void OnInitializeMelon()
         {
             Instance = this;
-            
             Logger = new MelonLogger.Instance("paranoia");
+            
+            ParanoiaDirector.Initialize();
+
+            AssetWarehouse._onReady += new Action(() =>
+            {
+                AudioBank.Initialize();
+            });
+        }
+
+        public override void OnUpdate()
+        {
+            ParanoiaDirector.Update();
         }
     }
 }

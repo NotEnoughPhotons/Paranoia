@@ -12,6 +12,8 @@ namespace NEP.Paranoia.Entities
     {
         public override void EntityStart()
         {
+            base.EntityStart();
+            
             UseAudio();
             SetSpatial(0.75f); // Let the player pinpoint location with audio
             
