@@ -6,7 +6,7 @@ using MelonLoader;
     NEP.Paranoia.BuildInfo.Name, 
     NEP.Paranoia.BuildInfo.Version, 
     NEP.Paranoia.BuildInfo.Author)]
-[assembly: MelonColor(255, 50, 0, 0)]
+[assembly: MelonColor(255, 125, 25, 25)]
 
 // Create and Setup a MelonGame Attribute to mark a Melon as Universal or Compatible with specific Games.
 // If no MelonGame Attribute is found or any of the Values for any MelonGame Attribute on the Melon is null or empty it will be assumed the Melon is Universal.

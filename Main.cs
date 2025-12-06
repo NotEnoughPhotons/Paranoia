@@ -25,13 +25,18 @@ namespace NEP.Paranoia
         {
             Instance = this;
             Logger = new MelonLogger.Instance("paranoia");
-            
-            ParanoiaDirector.Initialize();
 
+            BoneLib.Hooking.OnLevelLoaded += ParanoiaDirector.OnLevelLoaded;
+                            
             AssetWarehouse._onReady += new Action(() =>
             {
                 AudioBank.Initialize();
             });
+        }
+
+        public override void OnDeinitializeMelon()
+        {
+            BoneLib.Hooking.OnLevelLoaded -= ParanoiaDirector.OnLevelLoaded;
         }
 
         public override void OnUpdate()
