@@ -14,9 +14,19 @@ namespace NEP.Paranoia.Events.Spawners
         {
             base.Start();
 
+            if (ParanoiaDirector.Entities.Count == 0)
+            {
+                base.Stop();
+                return;
+            }
+
             Entity entity = ParanoiaDirector.Entities[Random.Range(0, ParanoiaDirector.Entities.Count - 1)];
-            ParanoiaDirector.Spawn(entity);
-            
+
+            if (ParanoiaDirector.Insanity >= entity.Insanity && !entity.Active)
+            {
+                ParanoiaDirector.Spawn(entity);
+            } 
+
             base.Stop();
         }
     }
