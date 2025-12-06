@@ -7,7 +7,7 @@ using UnityEngine.Video;
 namespace NEP.Paranoia.Entities
 {
     [RegisterTypeInIl2Cpp]
-    public class MonitorVideo(IntPtr ptr) : Entity(ptr)
+    public class Monitor(IntPtr ptr) : Entity(ptr)
     {
         public List<VideoClip> clips;
 
