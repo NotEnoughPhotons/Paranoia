@@ -2,10 +2,11 @@
 
 using Il2CppSLZ.Marrow;
 using Il2CppSLZ.Marrow.Interaction;
+using Il2CppSLZ.Marrow.Pool;
 using UnityEngine;
 
 using MelonLoader;
-
+using NEP.Paranoia.Managers;
 using Random = UnityEngine.Random;
 
 namespace NEP.Paranoia.Entities
@@ -46,14 +47,17 @@ namespace NEP.Paranoia.Entities
 
         protected float m_fadePercent;
 
+        private Poolee m_poolee;
+        
         private List<AudioTimeStamp> m_timestamps;
  
         public static Vector3 CirclePoint(Vector3 position, float radius = 1f, float angle = 0f)
         {
             float x = position.x + Mathf.Sin(angle * Mathf.Deg2Rad) * radius;
+            float y = position.y + Mathf.Sin(angle * Mathf.Deg2Rad) * radius;
             float z = position.z + Mathf.Cos(angle * Mathf.Deg2Rad) * radius;
 
-            return new Vector3(x, position.y, z);
+            return new Vector3(x, y, z);
         }
         
         public static Vector3 RandomCirclePoint(Vector3 position, float radius = 1f)
@@ -73,15 +77,19 @@ namespace NEP.Paranoia.Entities
             EntityUpdate();
         }
         
+        private void OnEnable() => EntityStart();
+        private void OnDisable() => EntityStop();
+        
         protected virtual void Awake()
         {
             m_source = gameObject.AddComponent<AudioSource>();
             
             m_timestamps = new List<AudioTimeStamp>();
-        }
 
-        private void OnEnable() => EntityStart();
-        private void OnDisable() => EntityStop();
+            m_poolee = GetComponent<Poolee>();
+            
+            ParanoiaDirector.RegisterEntity(this);
+        }
         
         public virtual void EntityStart()
         {
@@ -93,6 +101,7 @@ namespace NEP.Paranoia.Entities
         {
             m_target = null;
             m_targetTransform = null;
+            m_poolee.Despawn();
         }
 
         protected virtual void EntityUpdate() { }
@@ -119,7 +128,7 @@ namespace NEP.Paranoia.Entities
 
         protected bool BeingLookedAt()
         {
-            return Vector3.Dot(m_targetTransform.forward, transform.forward) <= 0.5f;
+            return Vector3.Dot(m_targetTransform.forward, transform.forward) <= 0.8f;
         }
         
         protected void SetPosition(Vector3 position)
@@ -129,7 +138,7 @@ namespace NEP.Paranoia.Entities
         
         protected void Move()
         {
-            transform.position += transform.forward * m_speed;
+            transform.position += transform.forward * (m_speed * Time.deltaTime);
         }
 
         protected void TakeDamage(float damage)
@@ -155,8 +164,6 @@ namespace NEP.Paranoia.Entities
             
             health.TAKEDAMAGE(m_attackDamage);
         }
-
-        
 
         protected void UseAudio(float volume = 1f, float pitch = 1f, float spatial = 1f)
         {
