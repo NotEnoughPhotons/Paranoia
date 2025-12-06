@@ -30,6 +30,7 @@ namespace NEP.Paranoia.Audio
         private static List<AudioClip> m_ringerCalls;
         private static List<AudioClip> m_radio;
         private static List<AudioClip> m_chaser;
+        private static List<AudioClip> m_darkVoice;
 
         internal static void Initialize()
         {
@@ -37,6 +38,7 @@ namespace NEP.Paranoia.Audio
             m_ringerCalls = new List<AudioClip>();
             m_radio = new List<AudioClip>();
             m_chaser = new List<AudioClip>();
+            m_darkVoice = new List<AudioClip>();
             MasterBank = new Dictionary<string, AudioClip>();
 
             if (!AssetWarehouse.Instance.TryGetPallet(new Barcode("NEP.Paranoia"), out Pallet pallet))
@@ -58,10 +60,16 @@ namespace NEP.Paranoia.Audio
         {
             clip.hideFlags = HideFlags.DontUnloadUnusedAsset;
 
-            if (disc.Description == "ambient")
+            if (disc.Description == "ambient" || disc.Description == "terror")
             {
                 m_ambience.Add(clip);
                 Ambience = m_ambience.ToArray();
+            }
+
+            if (disc.Description == "darkvoice")
+            {
+                m_darkVoice.Add(clip);
+                DarkVoice = m_darkVoice.ToArray();
             }
             
             if (disc.Description == "phone_extern_ring")
