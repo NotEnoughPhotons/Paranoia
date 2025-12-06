@@ -7,10 +7,18 @@ namespace NEP.Paranoia.Entities
     [RegisterTypeInIl2Cpp]
     public class CryingEntity(IntPtr ptr) : Entity(ptr)
     {
+        protected override void Awake()
+        {
+            base.Awake();
+            SetInsanity(3.0f);
+        }
+
         public override void EntityStart()
         {
             base.EntityStart();
-            
+
+
+            Appear();
             UseAudio();
             SetLooping(true);
             Emit(AudioBank.Crying);

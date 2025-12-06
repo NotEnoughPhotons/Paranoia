@@ -26,11 +26,18 @@ namespace NEP.Paranoia.Entities
 
         private float m_callTimer = 0f;
         private float m_callDuration = 0f;
-        
+
+        protected override void Awake()
+        {
+            base.Awake();
+            SetInsanity(2.25f);
+        }
+
         public override void EntityStart()
         {
             base.EntityStart();
-            
+
+            Appear();
             UseAudio();
             SetMinDistance(0.1f);
             SetMaxDistance(0.75f);

@@ -31,9 +31,17 @@ namespace NEP.Paranoia.Entities
         private Vector3 m_originalArmScale;
         private float m_armReach;
 
+        protected override void Awake()
+        {
+            base.Awake();
+            SetInsanity(3.5f);
+        }
+
         public override void EntityStart()
         {
             base.EntityStart();
+
+            Appear();
 
             m_armsLowered = transform.Find("ArmsDown");
             m_armsRaised = transform.Find("ArmsUp");
@@ -56,7 +64,7 @@ namespace NEP.Paranoia.Entities
         public override void EntityStop()
         {
             m_armReach = 0f;
-            m_armsRaised.transform.localScale = m_originalArmScale;
+            m_armsRaised?.transform.localScale = m_originalArmScale;
         }
 
         private bool ArmsCloseEnough()

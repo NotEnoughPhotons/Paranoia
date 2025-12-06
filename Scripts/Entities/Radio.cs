@@ -11,11 +11,18 @@ namespace NEP.Paranoia.Entities
     {
         private float m_timer = 0f;
         private float m_duration;
-        
+
+        protected override void Awake()
+        {
+            base.Awake();
+            SetInsanity(3.25f);
+        }
+
         public override void EntityStart()
         {
             base.EntityStart();
             
+            Appear();
             UseAudio();
             SetPitch(Random.Range(0.85f, 1f));
             

@@ -10,10 +10,17 @@ namespace NEP.Paranoia.Entities
     [RegisterTypeInIl2Cpp]
     public class CeilingMan(IntPtr ptr) : Entity(ptr)
     {
+        protected override void Awake()
+        {
+            base.Awake();
+            SetInsanity(2.75f);
+        }
+
         public override void EntityStart()
         {
             base.EntityStart();
-            
+
+            Appear();
             UseAudio();
             SetSpatial(0.75f); // Let the player pinpoint location with audio
             
@@ -24,6 +31,8 @@ namespace NEP.Paranoia.Entities
             Vector3 position = randomPoint + Vector3.up * 100f;
             
             SetPosition(position);
+            
+            // RenderFirst();
             
             Emit(AudioBank.CeilingMan);
         }

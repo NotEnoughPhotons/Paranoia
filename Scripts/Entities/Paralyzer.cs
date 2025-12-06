@@ -15,11 +15,18 @@ namespace NEP.Paranoia.Entities
     {
         private float m_timer = 0f;
         private float m_nextMove;
-        
+
+        protected override void Awake()
+        {
+            base.Awake();
+            SetInsanity(4.0f);
+        }
+
         public override void EntityStart()
         {
             base.EntityStart();
-            
+
+            Appear();
             UseAudio();
             SetSpatial(0.75f);
             
@@ -31,7 +38,7 @@ namespace NEP.Paranoia.Entities
 
             ParanoiaDirector.FreezePlayer();
 
-            m_speed = 15f;
+            m_speed = 1500f;
 
             Vector3 pos = RandomCirclePoint(m_targetTransform.position, 50f);
             SetPosition(pos);
