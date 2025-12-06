@@ -50,6 +50,7 @@ namespace NEP.Paranoia.Events.Player
 
         public override void Stop()
         {
+            base.Stop();
             m_timer = 0f;
             m_rigTarget = null;
             m_self.physicsRig.TurnOnRig();
