@@ -11,13 +11,17 @@ using NEP.Paranoia.Events;
 using NEP.Paranoia.Events.AI;
 using NEP.Paranoia.Events.Player;
 using NEP.Paranoia.Events.Spawners;
+using MelonLoader;
 
 namespace NEP.Paranoia.Managers
 {
     public static class ParanoiaDirector
     {
+        public static float Insanity => m_insanity;
         public static IReadOnlyList<Entity> Entities { get; internal set; }
-        
+
+        private static float m_insanity;
+
         private static Pallet m_pallet;
         
         private static List<Entity> m_entities;
@@ -45,8 +49,6 @@ namespace NEP.Paranoia.Managers
             Entities = m_entities;
             
             RegisterEvent<SpawnEntity>();
-            RegisterEvent<MoveAIToPlayer>();
-            RegisterEvent<ShutdownPlayer>();
         }
 
         public static void WarmupEntities()
@@ -117,11 +119,38 @@ namespace NEP.Paranoia.Managers
             
             entity.EntityStart();
         }
+
+        public static float RandomGaussian(float standardDeviation)
+        {
+            float r1 = UnityEngine.Random.value;
+            float r2 = UnityEngine.Random.value;
+            float rStdNorm = Mathf.Sqrt(-2f * Mathf.Log(r1, 10)) * Mathf.Sin(2 * Mathf.PI * r2);
+            return rStdNorm * standardDeviation;
+        }
+
+        public static float RandomGaussianRange(float standardDeviation, float range)
+        {
+            float f = 0f;
+
+            do
+            {
+                f = RandomGaussian(standardDeviation);
+            } while (Mathf.Abs(f) > range);
+
+            return f;
+        }
+
+        public static float RandomLogNormal(float mean, float standardDeviation)
+        {
+            return Mathf.Exp(RandomGaussian(standardDeviation)) * mean;
+        }
         
         public static void Update()
         {
             if (m_events == null)
                 return;
+
+            m_insanity += Time.deltaTime * (1f / 900f);
 
             foreach (var paranoiaEvent in m_events)
             {
