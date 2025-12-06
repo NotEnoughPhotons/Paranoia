@@ -1,55 +1,135 @@
-﻿using System.Reflection;
-using BoneLib;
+﻿using BoneLib;
 
 using Il2CppSLZ.Marrow;
 using Il2CppSLZ.Marrow.Interaction;
+using Il2CppSLZ.Marrow.Warehouse;
 
+using NEP.Paranoia.Entities;
 using UnityEngine;
 
 using NEP.Paranoia.Events;
+using NEP.Paranoia.Events.AI;
 using NEP.Paranoia.Events.Player;
 using NEP.Paranoia.Events.Spawners;
-using NEP.Paranoia.Events.World;
-using Random = UnityEngine.Random;
 
 namespace NEP.Paranoia.Managers
 {
     public static class ParanoiaDirector
     {
+        public static IReadOnlyList<Entity> Entities { get; internal set; }
+        
+        private static Pallet m_pallet;
+        
+        private static List<Entity> m_entities;
+        
         private static List<ParanoiaEvent> m_events;
-
-        private static float m_timer;
-        private static float m_nextEventTime;
+        private static Dictionary<string, ParanoiaEvent> m_registeredEvents;
+        
+        internal static void OnLevelLoaded(LevelInfo levelInfo)
+        {
+            Initialize();
+        }
         
         internal static void Initialize()
         {
-            m_events = new List<ParanoiaEvent>();
+            if (!AssetWarehouse.Instance.TryGetPallet(new Barcode("NEP.Paranoia"), out Pallet pallet))
+                throw new NotSupportedException("Paranoia pallet is not installed!");
             
-            //m_events.Add(new HandTremble());
-            //m_events.Add(new GrabPlayer());
-            m_events.Add(new SpawnEntity());
-            //m_events.Add(new FireGunInHand());
-            m_events.Add(new ShutdownPlayer());
-
-            m_nextEventTime = Random.Range(10f, 20f);
+            m_pallet = pallet;
+            
+            m_entities = new List<Entity>();
+            m_events = new List<ParanoiaEvent>();
+            m_registeredEvents = new Dictionary<string, ParanoiaEvent>();
+            
+            WarmupEntities();
+            Entities = m_entities;
+            
+            RegisterEvent<SpawnEntity>();
+            RegisterEvent<MoveAIToPlayer>();
+            RegisterEvent<ShutdownPlayer>();
         }
 
+        public static void WarmupEntities()
+        {
+            foreach (var entityCrate in m_pallet.Crates)
+            {
+                SpawnableCrateReference crateReference = new SpawnableCrateReference()
+                {
+                    Barcode = entityCrate.Barcode
+                };
+                
+                HelperMethods.SpawnCrate(crateReference, Vector3.zero, Quaternion.identity, Vector3.one);
+            }
+        }
+
+        public static void RegisterEntity(Entity entity)
+        {
+            entity.EntityStop();
+            m_entities.Add(entity);
+        }
+        
+        public static void RegisterEvent<T>() where T : ParanoiaEvent
+        {
+            string typeName = typeof(T).Name;
+            
+            if (typeof(T).IsAbstract || !typeof(T).IsSubclassOf(typeof(ParanoiaEvent)))
+                throw new NotSupportedException($"Event type {typeName} does not derive from ParanoiaEvent!");
+
+            // Already registered
+            if (m_registeredEvents.ContainsKey(typeName))
+                return;
+            
+            var instance = Activator.CreateInstance<T>();
+            
+            m_events.Add(instance);
+            m_registeredEvents.Add(typeName, instance);
+        }
+
+        public static void Spawn<T>() where T : Entity
+        {
+            if (m_entities.Count == 0)
+                return;
+            
+            if (typeof(T).IsAbstract || !typeof(T).IsSubclassOf(typeof(Entity)))
+                throw new NotSupportedException($"Event type {typeof(T).Name} does not derive from Entity!");
+
+            T entity = null;
+
+            foreach (var entityObject in m_entities)
+            {
+                if (entityObject.GetType() == typeof(T))
+                {
+                    entity = entityObject as T;
+                    break;
+                }
+            }
+            
+            if (entity == null)
+                throw new NullReferenceException($"Could not find entity of type {typeof(T).Name} in list!");
+            
+            entity.EntityStart();
+        }
+        
+        public static void Spawn(Entity entity)
+        {
+            if (entity == null)
+                return;
+            
+            entity.EntityStart();
+        }
+        
         public static void Update()
         {
-            m_timer += Time.deltaTime;
-
-            if (m_timer >= m_nextEventTime)
-            {
-                ParanoiaEvent randomEvent = m_events[Random.Range(0, m_events.Count)];
-                m_timer = 0f;
-                m_nextEventTime = Random.Range(10f, 20f);
-                randomEvent.Start();
-            }
+            if (m_events == null)
+                return;
 
             foreach (var paranoiaEvent in m_events)
             {
                 try
                 {
+                    if (paranoiaEvent.CanStart())
+                        paranoiaEvent.Start();
+                    
                     if (paranoiaEvent.Started)
                         paranoiaEvent.Update();
                 }
