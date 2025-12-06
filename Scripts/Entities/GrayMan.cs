@@ -13,6 +13,7 @@ namespace NEP.Paranoia.Entities
         
         public override void EntityStart()
         {
+            Appear();
             UseAudio();
             SetLooping(true);
 

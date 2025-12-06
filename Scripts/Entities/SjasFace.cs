@@ -8,8 +8,8 @@ namespace NEP.Paranoia.Entities
     {
         public override void EntityStart()
         {
-            
             base.EntityStart();
+            Appear();
             Emit(AudioBank.Sjas);
         }
     }

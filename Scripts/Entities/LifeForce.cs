@@ -11,6 +11,7 @@ namespace NEP.Paranoia.Entities
 
         public override void EntityStart()
         {
+            Appear();
             m_collider = GetComponent<SphereCollider>();
             m_collider.radius = m_lifeForceRadius;
         }

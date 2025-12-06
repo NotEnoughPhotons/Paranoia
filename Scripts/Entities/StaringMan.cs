@@ -1,5 +1,7 @@
 ﻿using MelonLoader;
 
+using Random = UnityEngine.Random;
+
 namespace NEP.Paranoia.Entities
 {
     [RegisterTypeInIl2Cpp]
@@ -8,9 +10,10 @@ namespace NEP.Paranoia.Entities
         public override void EntityStart()
         {
             base.EntityStart();
+
+            m_speed = Random.Range(1f, 5f);
             
-            m_speed = 0.5f;
-            
+            Appear();
             SetPosition(AroundTarget(100f));
         }
 
