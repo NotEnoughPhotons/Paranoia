@@ -176,7 +176,7 @@
 	  <Compile Include="Scripts\Extensions\CacheExtensions.cs" />
 	  <Compile Include="Scripts\Managers\DataReader.cs" />
 	  <Compile Include="Scripts\Managers\ParanoiaDirector.cs" />
-	  <Compile Include="Scripts\Utilities\Utilities.cs" />
+	  <Compile Include="Scripts\Utilities\Util.cs" />
 	</ItemGroup>
 
 	<ItemGroup>

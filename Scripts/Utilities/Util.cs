@@ -15,7 +15,7 @@ using Object = UnityEngine.Object;
 
 namespace NEP.Paranoia.Utilities
 {
-    public static class Utilities
+    public static class Util
     {
         public static Assembly GetAssembly(string assemblyName)
         {
