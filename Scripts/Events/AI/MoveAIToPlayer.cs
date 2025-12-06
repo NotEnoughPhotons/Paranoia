@@ -1,5 +1,8 @@
-﻿using NEP.Paranoia.Managers;
+﻿using Il2CppSLZ.Marrow.PuppetMasta;
+
 using UnityEngine;
+
+using NEP.Paranoia.Utilities;
 
 namespace NEP.Paranoia.Events.AI
 {
@@ -7,17 +10,14 @@ namespace NEP.Paranoia.Events.AI
     {
         public override void Start()
         {
-            /*BehaviourBaseNav[] navs;
-            ParanoiaUtilities.Utilities.FindAIBrains(out navs);
-            Transform player = Utilities.FindPlayer();
-
-            if(player == null) { return; }
-            if(navs == null) { return; }
+            BehaviourBaseNav[] navs;
+            Util.FindAIBrains(out navs);
+            
+            if(navs == null)
+                return;
 
             foreach (BehaviourBaseNav nav in navs)
-            {
-                Paranoia.instance.gameManager.MoveAIToPoint(nav, player.position);
-            }*/
+                nav.SetPath(BoneLib.Player.Head.position);
         }
     }
 }
