@@ -25,7 +25,11 @@ namespace NEP.Paranoia.Entities
             public AudioClip clip;
             public float time;
         }
-        
+
+        public float Insanity => m_insanity;
+
+        public bool Active => m_active;
+
         protected EntityFlags m_entityFlags;
         protected SpawnFlags m_spawnFlags;
 
@@ -37,6 +41,8 @@ namespace NEP.Paranoia.Entities
 
         protected AudioSource m_source;
 
+        protected bool m_active;
+
         protected float m_health;
         protected float m_lifetime;
         protected float m_attackDamage;
@@ -46,6 +52,8 @@ namespace NEP.Paranoia.Entities
         protected float m_maxDistance;
 
         protected float m_fadePercent;
+
+        protected float m_insanity;
 
         private Poolee m_poolee;
         
@@ -93,12 +101,14 @@ namespace NEP.Paranoia.Entities
         
         public virtual void EntityStart()
         {
+            m_active = true;
             m_target = Player.RigManager;
             m_targetTransform = Player.Head;
         }
 
         public virtual void EntityStop()
         {
+            m_active = false;
             m_target = null;
             m_targetTransform = null;
             m_poolee.Despawn();
@@ -203,6 +213,14 @@ namespace NEP.Paranoia.Entities
             
             m_source.clip = random;
             m_source.Play();
+        }
+
+        protected void SetInsanity(float insanity)
+        {
+            if (insanity < 0f)
+                insanity = 0f;
+
+            m_insanity = insanity;
         }
 
         protected void SetVolume(float volume)
