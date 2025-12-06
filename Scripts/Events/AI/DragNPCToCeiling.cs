@@ -12,7 +12,7 @@ namespace NEP.Paranoia.Events.AI
         {
             SetInsanityLevel(1f);
             
-            AIBrain[] brains = Utilities.Utilities.FindAIBrains();
+            AIBrain[] brains = Utilities.Util.FindAIBrains();
 
             if (brains == null || brains.Length == 0) { return; }
 

@@ -11,7 +11,7 @@ namespace NEP.Paranoia.Events.AI
         {
             SetInsanityLevel(2f);
             
-            AIBrain[] brains = Utilities.Utilities.FindAIBrains();
+            AIBrain[] brains = Utilities.Util.FindAIBrains();
 
             foreach(AIBrain brain in brains)
             {
