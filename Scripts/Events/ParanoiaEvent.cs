@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using NEP.Paranoia.Managers;
+using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace NEP.Paranoia.Events
@@ -18,6 +19,9 @@ namespace NEP.Paranoia.Events
         {
             if (m_started)
                 return false;
+
+            if (ParanoiaDirector.Insanity < m_insanityLevel)
+                return false;
             
             m_timer += Time.deltaTime;
 
@@ -27,11 +31,16 @@ namespace NEP.Paranoia.Events
             m_timer = 0f;
             return true;
         }
+
+        public virtual void Setup()
+        {
+
+        }
         
         public virtual void Start()
         {
+            m_nextTimeToRun = Random.Range(0f, 60f);
             m_started = true;
-            m_nextTimeToRun = Random.Range(0f, 15f);
         }
 
         public virtual void Update()
