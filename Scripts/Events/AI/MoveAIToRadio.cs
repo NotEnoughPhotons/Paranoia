@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 using NEP.Paranoia.Managers;
+using NEP.Paranoia.Utilities;
+using Il2CppSLZ.Marrow.PuppetMasta;
+using NEP.Paranoia.Entities;
 
 namespace NEP.Paranoia.Events.AI
 {
@@ -7,17 +10,26 @@ namespace NEP.Paranoia.Events.AI
     {
         public override void Start()
         {
-            /*BehaviourBaseNav[] navs;
-            ParanoiaUtilities.Utilities.FindAIBrains(out navs);
+            base.Start();
 
-            GameObject radio = GameManager.hRadio.gameObject;
+            Radio radio = ParanoiaDirector.GetEntity<Radio>();
 
-            if(radio == null) { return; }
+            if (!radio)
+                return;
 
-            foreach(BehaviourBaseNav nav in navs)
+            if (!radio.Active)
+                return;
+
+            var navs = Util.FindBaseNavs(Util.FindAIBrains());
+
+            if (navs.Length == 0)
+                return;
+
+            foreach (var nav in navs)
             {
-                Paranoia.instance.gameManager.MoveAIToPoint(nav, radio.transform.position);
-            }*/
+                nav.mentalState = BehaviourBaseNav.MentalState.MindControlled;
+                nav.SetPath(radio.transform.position);
+            }
         }
     }
 }

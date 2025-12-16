@@ -1,34 +1,54 @@
 ﻿using Il2CppPuppetMasta;
 using Il2CppSLZ.Marrow.AI;
 
+using System.Collections;
+using UnityEngine;
+using MelonLoader;
 using Random = UnityEngine.Random;
 
 namespace NEP.Paranoia.Events.AI
 {
     public class LaughAtPlayer : ParanoiaEvent
     {
+        private List<SubBehaviourFaceanim> m_speakers;
+
         public override void Start()
         {
-            SetInsanityLevel(2f);
+            m_speakers = new List<SubBehaviourFaceanim>();
+
+            base.Start();
+
+            // SetInsanityLevel(2f);
             
             AIBrain[] brains = Utilities.Util.FindAIBrains();
 
-            foreach(AIBrain brain in brains)
+            foreach (AIBrain brain in brains)
             {
-                if(brain == null)
-                {
-                    continue;
-                }
-
                 BehaviourPowerLegs powerLegs = brain?.behaviour.TryCast<BehaviourPowerLegs>();
 
-                if(!powerLegs)
-                {
+                if (!powerLegs || powerLegs.faceAnim == null)
                     return;
-                }
 
-                powerLegs?.faceAnim?.Attack1(Random.Range(1, 3));
+                m_speakers.Add(powerLegs.faceAnim);
             }
+
+            MelonCoroutines.Start(LaughRoutine());
+        }
+
+        private IEnumerator LaughRoutine()
+        {
+            int count = Random.Range(0, 15);
+
+            for (int i = 0; i < count; i++)
+            {
+                foreach (var face in m_speakers)
+                    face.Attack1(Random.Range(0, 2));
+
+                yield return new WaitForSeconds(1.75f);
+            }
+
+            base.Stop();
+            yield return null;
         }
     }
 }
