@@ -6,7 +6,7 @@
     {
         public override void Start()
         {
-            throw new NotImplementedException();
+            
         }
     }
 }

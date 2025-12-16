@@ -8,7 +8,7 @@ namespace NEP.Paranoia.Events.Player
     {
         public override void Start()
         {
-            throw new NotImplementedException();
+
         }
     }
 }

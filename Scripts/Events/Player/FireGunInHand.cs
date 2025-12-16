@@ -6,6 +6,8 @@ namespace NEP.Paranoia.Events.Player
     {
         public override void Start()
         {
+            base.Start();
+
             Gun leftGun = BoneLib.Player.GetComponentInHand<Gun>(BoneLib.Player.LeftHand);
             Gun rightGun = BoneLib.Player.GetComponentInHand<Gun>(BoneLib.Player.RightHand);
 
@@ -14,6 +16,8 @@ namespace NEP.Paranoia.Events.Player
 
             if (rightGun)
                 rightGun.Fire();
+
+            base.Stop();
         }
     }
 }

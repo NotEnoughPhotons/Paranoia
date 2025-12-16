@@ -6,6 +6,8 @@ namespace NEP.Paranoia.Events.Player
     {
         public override void Start()
         {
+            base.Start();
+
             // Try to get the Nimbus gun in either/both hand(s)
             FlyingGun leftHandNimbus = BoneLib.Player.GetComponentInHand<FlyingGun>(BoneLib.Player.LeftHand);
             FlyingGun rightHandNimbus = BoneLib.Player.GetComponentInHand<FlyingGun>(BoneLib.Player.RightHand);
@@ -21,6 +23,8 @@ namespace NEP.Paranoia.Events.Player
                 rightHandNimbus.DisableNoClip(BoneLib.Player.RightHand);
                 rightHandNimbus.triggerGrip.ForceDetach();
             }
+
+            base.Stop();
         }
     }
 }
