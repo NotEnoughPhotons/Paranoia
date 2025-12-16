@@ -131,7 +131,7 @@
 	  <Compile Include="Scripts\Entities\CeilingMan.cs" />
 	  <Compile Include="Scripts\Entities\Chaser.cs" />
 	  <Compile Include="Scripts\Entities\CryingEntity.cs" />
-	  <Compile Include="Scripts\Entities\CursedDoorController.cs" />
+	  <Compile Include="Scripts\Entities\Bridge.cs" />
 	  <Compile Include="Scripts\Entities\DarkVoice.cs" />
 	  <Compile Include="Scripts\Entities\Entity.cs" />
 	  <Compile Include="Scripts\Entities\EntityFlags.cs" />
@@ -148,6 +148,7 @@
 	  <Compile Include="Scripts\Entities\Terror.cs" />
 	  <Compile Include="Scripts\Entities\Unstable.cs" />
 	  <Compile Include="Scripts\Events\AI\AILookAtCeiling.cs" />
+	  <Compile Include="Scripts\Events\AI\CorruptNPC.cs" />
 	  <Compile Include="Scripts\Events\AI\DragNPCToCeiling.cs" />
 	  <Compile Include="Scripts\Events\AI\DragRandomNPC.cs" />
 	  <Compile Include="Scripts\Events\AI\HideAllAI.cs" />
