@@ -5,7 +5,7 @@ namespace NEP.Paranoia.Audio
 {
     public static class AudioBank
     {
-        public static Dictionary<string, AudioClip> MasterBank;
+        public static Dictionary<string, AudioClip> Master;
         
         public static AudioClip[] Ambience;
         public static AudioClip[] Terror;
@@ -39,7 +39,7 @@ namespace NEP.Paranoia.Audio
             m_radio = new List<AudioClip>();
             m_chaser = new List<AudioClip>();
             m_darkVoice = new List<AudioClip>();
-            MasterBank = new Dictionary<string, AudioClip>();
+            Master = new Dictionary<string, AudioClip>();
 
             if (!AssetWarehouse.Instance.TryGetPallet(new Barcode("NEP.Paranoia"), out Pallet pallet))
                 throw new NullReferenceException("The Paranoia pallet is MISSING.");
@@ -58,6 +58,7 @@ namespace NEP.Paranoia.Audio
 
         private static void OnClipLoaded(AudioClip clip, MonoDisc disc)
         {
+            // TODO: find a better way to load assets 'cause this STINKS
             clip.hideFlags = HideFlags.DontUnloadUnusedAsset;
 
             if (disc.Description == "ambient" || disc.Description == "terror")
@@ -105,7 +106,7 @@ namespace NEP.Paranoia.Audio
                 Chaser = m_chaser.ToArray();
             }
                         
-            MasterBank.Add(clip.name, clip);
+            Master.Add(disc.Title, clip);
         }
     }
 }
