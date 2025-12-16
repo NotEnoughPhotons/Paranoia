@@ -8,6 +8,7 @@ using UnityEngine;
 using MelonLoader;
 using NEP.Paranoia.Managers;
 using Random = UnityEngine.Random;
+using NEP.Paranoia.Audio;
 
 namespace NEP.Paranoia.Entities
 {
@@ -59,7 +60,7 @@ namespace NEP.Paranoia.Entities
         
         private List<AudioTimeStamp> m_timestamps;
  
-        public static Vector3 CirclePoint(Vector3 position, float radius = 1f, float angle = 0f)
+        public static Vector3 SpherePoint(Vector3 position, float radius = 1f, float angle = 0f)
         {
             float x = position.x + Mathf.Sin(angle * Mathf.Deg2Rad) * radius;
             float y = position.y + Mathf.Sin(angle * Mathf.Deg2Rad) * radius;
@@ -67,15 +68,34 @@ namespace NEP.Paranoia.Entities
 
             return new Vector3(x, y, z);
         }
-        
-        public static Vector3 RandomCirclePoint(Vector3 position, float radius = 1f)
+
+        public static Vector3 CirclePoint(Vector3 position, float radius = 1f, float angle = 0f, float height = 0f)
         {
-            return CirclePoint(position, radius, Random.Range(0f, 360f));
+            float x = position.x + Mathf.Sin(angle * Mathf.Deg2Rad) * radius;
+            float y = position.y + height;
+            float z = position.z + Mathf.Cos(angle * Mathf.Deg2Rad) * radius;
+
+            return new Vector3(x, y, z);
+        }
+
+        public static Vector3 RandomCirclePoint(Vector3 position, float radius = 1f, float height = 0f)
+        {
+            return CirclePoint(position, radius, Random.Range(0f, 360f), height);
+        }
+
+        public static Vector3 RandomSpherePoint(Vector3 position, float radius = 1f)
+        {
+            return SpherePoint(position, radius, Random.Range(0f, 360f));
         }
 
         public Vector3 AroundTarget(float radius = 1f)
         {
-            return RandomCirclePoint(m_targetTransform.position, radius);
+            return RandomSpherePoint(m_targetTransform.position, radius);
+        }
+
+        public Vector3 AroundTarget(float radius = 1f, float height = 0f)
+        {
+            return RandomCirclePoint(m_targetTransform.position, radius, height);
         }
 
         private void Update()
@@ -213,6 +233,14 @@ namespace NEP.Paranoia.Entities
             
             m_source.clip = random;
             m_source.Play();
+        }
+
+        protected void Emit(string soundName)
+        {
+            if (AudioBank.Master.TryGetValue(soundName, out AudioClip clip))
+                Emit(clip);
+            else
+                Paranoia.Logger.Warning($"Couldn't load non-existent bank sound {soundName}!");
         }
 
         protected void SetInsanity(float insanity)

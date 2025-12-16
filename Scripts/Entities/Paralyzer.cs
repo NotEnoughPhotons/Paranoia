@@ -40,7 +40,7 @@ namespace NEP.Paranoia.Entities
 
             m_speed = 1500f;
 
-            Vector3 pos = RandomCirclePoint(m_targetTransform.position, 50f);
+            Vector3 pos = RandomSpherePoint(m_targetTransform.position, 50f);
             SetPosition(pos);
         }
 
