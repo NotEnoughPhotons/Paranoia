@@ -28,11 +28,8 @@ namespace NEP.Paranoia.Managers
         
         private static List<ParanoiaEvent> m_events;
         private static Dictionary<string, ParanoiaEvent> m_registeredEvents;
-        
-        internal static void OnLevelLoaded(LevelInfo levelInfo)
-        {
-            Initialize();
-        }
+
+        internal static void OnLevelLoaded(LevelInfo levelInfo) => Initialize();
         
         internal static void Initialize()
         {
@@ -47,8 +44,8 @@ namespace NEP.Paranoia.Managers
             
             WarmupEntities();
             Entities = m_entities;
-            
-            RegisterEvent<SpawnEntity>();
+
+            RegisterAllEvents();
         }
 
         public static void WarmupEntities()
@@ -87,6 +84,22 @@ namespace NEP.Paranoia.Managers
             m_registeredEvents.Add(typeName, instance);
         }
 
+        public static void RegisterAllEvents()
+        {
+            Type[] types = typeof(ParanoiaEvent).GetNestedTypes();
+
+            foreach (Type type in types)
+            {
+                if (m_registeredEvents.ContainsKey(type.Name))
+                    continue;
+
+                ParanoiaEvent instance = Activator.CreateInstance(type) as ParanoiaEvent;
+
+                m_events.Add(instance);
+                m_registeredEvents.Add(type.Name, instance);
+            }
+        }
+
         public static void Spawn<T>() where T : Entity
         {
             if (m_entities.Count == 0)
@@ -120,6 +133,17 @@ namespace NEP.Paranoia.Managers
             entity.EntityStart();
         }
 
+        public static T GetEntity<T>() where T : Entity
+        {
+            foreach (var entity in Entities)
+            {
+                if (entity is T)
+                    return (T)entity;
+            }
+
+            return null;
+        }
+
         public static float RandomGaussian(float standardDeviation)
         {
             float r1 = UnityEngine.Random.value;
@@ -150,7 +174,7 @@ namespace NEP.Paranoia.Managers
             if (m_events == null)
                 return;
 
-            m_insanity += Time.deltaTime * (1f / 900f);
+            m_insanity += Time.deltaTime * (1f / 60f);
 
             foreach (var paranoiaEvent in m_events)
             {
