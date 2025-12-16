@@ -1,12 +1,12 @@
 ![Paranoia - An experimental horror mod for BONEWORKS.](https://i.imgur.com/F7dsyJn.png)
 
-## Description:
+## Description
 
 #### This is the official source code for the BONELAB mod, Paranoia.
 
 #### Paranoia is an experimental horror mod for BONELAB, with scripts integrated into Marrow SDK. All code in this project is subject to change with time.
 
-## Contents:
+## Contents
 
 |   Folder   	| Description                                                                      	|
 |:----------:	|----------------------------------------------------------------------------------	|
@@ -17,5 +17,5 @@
 | Managers   	| Contains the game manager and other data manager functionality.                 	|
 | Utilities   | Helper functions for easy development.                            	              |
 
-## Licensing/Credits:
+## Licensing/Credits
 **Paranoia** is licensed under the MIT License.
