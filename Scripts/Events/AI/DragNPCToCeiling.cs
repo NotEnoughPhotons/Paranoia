@@ -10,6 +10,8 @@ namespace NEP.Paranoia.Events.AI
     {
         public override void Start()
         {
+            base.Start();
+
             SetInsanityLevel(1f);
             
             AIBrain[] brains = Utilities.Util.FindAIBrains();
@@ -29,6 +31,8 @@ namespace NEP.Paranoia.Events.AI
             rand.puppetMaster.muscleWeight = 0f;
 
             MelonLoader.MelonCoroutines.Start(CoGrabRoutine(rand, targetRB));
+
+            base.Stop();
         }
 
         private System.Collections.IEnumerator CoGrabRoutine(AIBrain brain, Rigidbody part)
@@ -43,7 +47,7 @@ namespace NEP.Paranoia.Events.AI
                 //Paranoia.instance.GetClipInDirectory("player_grab_03"),
             };
 
-            AudioSource.PlayClipAtPoint(grabClips[Random.Range(0, grabClips.Length)], part.position);
+            // AudioSource.PlayClipAtPoint(grabClips[Random.Range(0, grabClips.Length)], part.position);
 
             yield return new WaitForSeconds(2f);
 

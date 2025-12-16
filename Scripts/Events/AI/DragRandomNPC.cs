@@ -9,6 +9,8 @@ namespace NEP.Paranoia.Events.AI
     {
         public override void Start()
         {
+            base.Start();
+
             SetInsanityLevel(1f);
             
             AIBrain[] brains = Utilities.Util.FindAIBrains();
@@ -31,7 +33,7 @@ namespace NEP.Paranoia.Events.AI
                 physRoot.Find("Spine_M/Chest_M/Shoulder_R/Elbow_R/Wrist_R").GetComponent<Rigidbody>()
             };
 
-            Rigidbody targetRB = rbs[Random.Range(0, rbs.Length)];
+            Rigidbody targetRB = rbs[Random.Range(0, rbs.Length - 1)];
 
             if(targetRB == null) { return; }
 
@@ -40,10 +42,10 @@ namespace NEP.Paranoia.Events.AI
 
         private System.Collections.IEnumerator CoGrabRoutine(AIBrain brain, Rigidbody part)
         {
-            /*float timer = 0f;
+            float timer = 0f;
 
             // Insert grab sound effect here.
-            AudioSource.PlayClipAtPoint(Paranoia.instance.grabSounds[Random.Range(0, Paranoia.instance.grabSounds.Count)], part.position);
+            // AudioSource.PlayClipAtPoint(Paranoia.instance.grabSounds[Random.Range(0, Paranoia.instance.grabSounds.Count)], part.position);
 
             yield return new WaitForSeconds(2f);
 
@@ -58,7 +60,7 @@ namespace NEP.Paranoia.Events.AI
                 yield return null;
             }
 
-            brain.gameObject.SetActive(false);*/
+            brain.gameObject.SetActive(false);
 
             yield return null;
         }
