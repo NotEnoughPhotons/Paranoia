@@ -20,7 +20,7 @@ namespace NEP.Paranoia.Entities
             Appear();
             UseAudio();
             Emit(AudioBank.DarkVoice);
-            SetPosition(AroundTarget(0.1f));
+            SetPosition(AroundTarget(0.35f));
         }
     }
 }

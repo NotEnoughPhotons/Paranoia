@@ -34,7 +34,7 @@ namespace NEP.Paranoia.Entities
             
             // RenderFirst();
             
-            Emit(AudioBank.CeilingMan);
+            Emit("Ceiling Man");
         }
 
         protected override void EntityUpdate()
