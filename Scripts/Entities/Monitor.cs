@@ -14,11 +14,13 @@ namespace NEP.Paranoia.Entities
 
         protected override void Awake()
         {
+            base.Awake();
             m_renderTexture = new RenderTexture(512, 512, 0);
             m_renderTexture.format = RenderTextureFormat.ARGBFloat;
             m_renderTexture.Create();
 
             m_videoPlayer = GetComponent<VideoPlayer>();
+            Disappear();
         }
     }
 }

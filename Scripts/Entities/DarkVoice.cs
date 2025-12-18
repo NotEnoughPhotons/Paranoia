@@ -10,7 +10,8 @@ namespace NEP.Paranoia.Entities
         protected override void Awake()
         {
             base.Awake();
-            SetInsanity(1.5f);
+            Read("DarkVoice");
+            Disappear();
         }
 
         public override void EntityStart()
@@ -18,9 +19,8 @@ namespace NEP.Paranoia.Entities
             base.EntityStart();
 
             Appear();
-            UseAudio();
-            Emit(AudioBank.DarkVoice);
-            SetPosition(AroundTarget(0.35f));
+            Emit(m_clips);
+            SetPosition(AroundTarget(m_radius));
         }
     }
 }

@@ -67,14 +67,10 @@ namespace NEP.Paranoia.Events.AI
 
         private Target m_target;
 
-        public override void Setup()
-        {
-            base.Setup();
-        }
-
         public override void Start()
         {
             base.Start();
+            Read("CorruptNPC");
 
             if (m_target != null)
             {

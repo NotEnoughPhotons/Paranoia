@@ -9,6 +9,13 @@ namespace NEP.Paranoia.Entities
         private SphereCollider m_collider;
         private float m_lifeForceRadius = 2f;
 
+        protected override void Awake()
+        {
+            base.Awake();
+            Read("LifeForce");
+            Disappear();
+        }
+
         public override void EntityStart()
         {
             Appear();

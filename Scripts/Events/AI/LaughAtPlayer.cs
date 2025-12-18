@@ -17,6 +17,7 @@ namespace NEP.Paranoia.Events.AI
             m_speakers = new List<SubBehaviourFaceanim>();
 
             base.Start();
+            Read("AILaughAtPlayer");
 
             // SetInsanityLevel(2f);
             

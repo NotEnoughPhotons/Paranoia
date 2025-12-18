@@ -13,6 +13,7 @@ namespace NEP.Paranoia.Events.Spawners
         public override void Start()
         {
             base.Start();
+            Read("SpawnEntity");
 
             if (ParanoiaDirector.Entities.Count == 0)
             {

@@ -35,6 +35,7 @@ namespace NEP.Paranoia.Entities
         {
             base.Awake();
             SetInsanity(3.5f);
+            Disappear();
         }
 
         public override void EntityStart()

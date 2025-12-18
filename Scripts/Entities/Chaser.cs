@@ -10,8 +10,8 @@ namespace NEP.Paranoia.Entities
         protected override void Awake()
         {
             base.Awake();
-
-            SetInsanity(1.75f);
+            Read("Chaser");
+            Disappear();
         }
 
         public override void EntityStart()
@@ -19,18 +19,11 @@ namespace NEP.Paranoia.Entities
             base.EntityStart();
 
             Appear();
-            UseAudio();
-            
-            SetVolume(0.75f);
-            SetLooping(true);
-            SetSpatial(0.925f);
             
             FaceTarget();
-            Emit(AudioBank.Chaser);
-
-            m_speed = 35f;
+            Emit(m_clips);
             
-            SetPosition(AroundTarget(250f));
+            SetPosition(AroundTarget(m_radius));
         }
 
         protected override void EntityUpdate()

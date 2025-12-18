@@ -10,7 +10,7 @@ namespace NEP.Paranoia.Entities
         protected override void Awake()
         {
             base.Awake();
-            SetInsanity(3.0f);
+            // Read("Crying");
         }
 
         public override void EntityStart()

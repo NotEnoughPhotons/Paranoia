@@ -1,17 +1,15 @@
 ﻿using BoneLib;
-
 using Il2CppSLZ.Marrow;
 using Il2CppSLZ.Marrow.Interaction;
 using Il2CppSLZ.Marrow.Warehouse;
-
+using MelonLoader;
+using NEP.Paranoia.Data;
 using NEP.Paranoia.Entities;
-using UnityEngine;
-
 using NEP.Paranoia.Events;
 using NEP.Paranoia.Events.AI;
 using NEP.Paranoia.Events.Player;
 using NEP.Paranoia.Events.Spawners;
-using MelonLoader;
+using UnityEngine;
 
 namespace NEP.Paranoia.Managers
 {
@@ -35,7 +33,9 @@ namespace NEP.Paranoia.Managers
         {
             if (!AssetWarehouse.Instance.TryGetPallet(new Barcode("NEP.Paranoia"), out Pallet pallet))
                 throw new NotSupportedException("Paranoia pallet is not installed!");
-            
+
+            DataReader.Initialize();
+
             m_pallet = pallet;
             
             m_entities = new List<Entity>();
@@ -45,7 +45,10 @@ namespace NEP.Paranoia.Managers
             WarmupEntities();
             Entities = m_entities;
 
-            RegisterAllEvents();
+            RegisterEvent<SpawnEntity>();
+            RegisterEvent<LaughAtPlayer>();
+            RegisterEvent<MoveAIToPlayer>();
+            RegisterEvent<MoveAIToRadio>();
         }
 
         public static void WarmupEntities()
@@ -82,22 +85,6 @@ namespace NEP.Paranoia.Managers
             
             m_events.Add(instance);
             m_registeredEvents.Add(typeName, instance);
-        }
-
-        public static void RegisterAllEvents()
-        {
-            Type[] types = typeof(ParanoiaEvent).GetNestedTypes();
-
-            foreach (Type type in types)
-            {
-                if (m_registeredEvents.ContainsKey(type.Name))
-                    continue;
-
-                ParanoiaEvent instance = Activator.CreateInstance(type) as ParanoiaEvent;
-
-                m_events.Add(instance);
-                m_registeredEvents.Add(type.Name, instance);
-            }
         }
 
         public static void Spawn<T>() where T : Entity
