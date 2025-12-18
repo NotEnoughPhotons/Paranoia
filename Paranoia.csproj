@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
@@ -138,6 +138,7 @@
 	  <Compile Include="Scripts\Entities\CryingEntity.cs" />
 	  <Compile Include="Scripts\Entities\Bridge.cs" />
 	  <Compile Include="Scripts\Entities\DarkVoice.cs" />
+	  <Compile Include="Scripts\Entities\Deafener.cs" />
 	  <Compile Include="Scripts\Entities\Entity.cs" />
 	  <Compile Include="Scripts\Entities\EntityFlags.cs" />
 	  <Compile Include="Scripts\Entities\LifeForce.cs" />
