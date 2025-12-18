@@ -10,7 +10,14 @@ namespace NEP.Paranoia.Entities
         private float m_duration = 0f;
 
         private AudioClip m_clip;
-        
+
+        protected override void Awake()
+        {
+            base.Awake();
+            Read("GrayMan");
+            Disappear();
+        }
+
         public override void EntityStart()
         {
             Appear();

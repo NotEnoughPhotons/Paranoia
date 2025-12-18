@@ -9,6 +9,13 @@ namespace NEP.Paranoia.Entities
     [RegisterTypeInIl2Cpp]
     public class Terror(IntPtr ptr) : Entity(ptr)
     {
+        protected override void Awake()
+        {
+            base.Awake();
+            Read("Terror");
+            Disappear();
+        }
+
         public override void EntityStart()
         {
             Appear();

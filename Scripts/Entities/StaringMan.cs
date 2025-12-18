@@ -7,14 +7,19 @@ namespace NEP.Paranoia.Entities
     [RegisterTypeInIl2Cpp]
     public class StaringMan(IntPtr ptr) : Entity(ptr)
     {
+        protected override void Awake()
+        {
+            base.Awake();
+            Read("StaringMan");
+            Disappear();
+        }
+
         public override void EntityStart()
         {
             base.EntityStart();
-
-            m_speed = Random.Range(1f, 5f);
             
             Appear();
-            SetPosition(AroundTarget(100f));
+            SetPosition(AroundTarget(m_radius));
         }
 
         protected override void EntityUpdate()
@@ -22,7 +27,7 @@ namespace NEP.Paranoia.Entities
             FaceTarget();
             Move();
             
-            if (DistanceToTarget() <= 10f)
+            if (DistanceToTarget() <= m_maxDistance)
                 Disappear();
         }
     }

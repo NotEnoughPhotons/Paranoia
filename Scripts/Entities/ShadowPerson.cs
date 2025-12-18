@@ -8,14 +8,20 @@ namespace NEP.Paranoia.Entities
     public class ShadowPerson(IntPtr ptr) : Entity(ptr)
     {
         private bool m_becomeChaser = false;
-        
+
+        protected override void Awake()
+        {
+            base.Awake();
+            Read("ShadowPerson");
+            Disappear();
+        }
+
         public override void EntityStart()
         {
             base.EntityStart();
 
             Appear();
-            SetPosition(AroundTarget(50f));
-            m_speed = 50f;
+            SetPosition(AroundTarget(m_radius));
 
             // 50% chance to become a chaser
             m_becomeChaser = Random.Range(0f, 100f) % 2 == 0;
@@ -27,7 +33,7 @@ namespace NEP.Paranoia.Entities
 
             if (m_becomeChaser)
             {
-                if (DistanceToTarget() <= 25f)
+                if (DistanceToTarget() <= m_maxDistance)
                     Disappear();
 
                 Move();
@@ -35,7 +41,7 @@ namespace NEP.Paranoia.Entities
                 return;
             }
             
-            if (DistanceToTarget() <= 25f)
+            if (DistanceToTarget() <= m_maxDistance)
                 Disappear();
         }
     }

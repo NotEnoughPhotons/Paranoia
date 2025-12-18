@@ -1,14 +1,14 @@
 ﻿using BoneLib;
-
 using Il2CppSLZ.Marrow;
-using Il2CppSLZ.Marrow.Interaction;
 using Il2CppSLZ.Marrow.Pool;
-using UnityEngine;
-
 using MelonLoader;
-using NEP.Paranoia.Managers;
-using Random = UnityEngine.Random;
 using NEP.Paranoia.Audio;
+using NEP.Paranoia.Data;
+using NEP.Paranoia.Managers;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace NEP.Paranoia.Entities
 {
@@ -44,13 +44,23 @@ namespace NEP.Paranoia.Entities
 
         protected bool m_active;
 
+        protected float m_maxDistance;
+
         protected float m_health;
         protected float m_lifetime;
         protected float m_attackDamage;
 
         protected float m_speed;
-        protected float m_minDistance;
-        protected float m_maxDistance;
+        protected float m_radius;
+
+        protected float m_volume;
+        protected float m_spatial;
+        protected bool m_looping;
+        protected float m_minPitch;
+        protected float m_maxPitch;
+        protected float m_minAudioDistance;
+        protected float m_maxAudioDistance;
+        protected string[] m_clips;
 
         protected float m_fadePercent;
 
@@ -117,6 +127,54 @@ namespace NEP.Paranoia.Entities
             m_poolee = GetComponent<Poolee>();
             
             ParanoiaDirector.RegisterEntity(this);
+        }
+
+        protected virtual void Read(string entity)
+        {
+            if (!DataReader.EntityDefinitions.TryGetValue(entity, out EntityDefinition definition))
+            {
+                Paranoia.Logger.Warning($"Couldn't load entity definition for {entity}!");
+                return;
+            }
+
+            // Base settings
+            m_insanity = definition.Insanity;
+            m_maxDistance = definition.MaxDistance;
+            
+            // Spawning
+            m_radius = definition.Spawn.Radius;
+            
+            // Movement
+            m_speed = definition.Movement.Speed;
+
+            // Vitals
+            m_health = definition.Vitals.Health;
+
+            // Attack
+            m_attackDamage = definition.Attack.Damage;
+
+            // Audio
+            m_volume = definition.Audio.Volume;
+            m_spatial = definition.Audio.Spatial;
+            m_looping = definition.Audio.Loop;
+            m_minPitch = definition.Audio.MinPitch;
+            m_maxPitch = definition.Audio.MaxPitch;
+            m_minAudioDistance = definition.Audio.MinDistance;
+            m_maxAudioDistance = definition.Audio.MaxDistance;
+            m_clips = definition.Audio.Clips;
+
+            UseAudio(m_volume, 1f, m_spatial);
+            SetLooping(m_looping);
+            SetMinDistance(m_minAudioDistance);
+            SetMaxDistance(m_maxAudioDistance);
+        }
+
+        protected virtual JToken ReadJToken(string entity)
+        {
+            using var streamReader = new StreamReader(DataReader.EntityFiles[entity]);
+            using var jReader = new JsonTextReader(streamReader);
+
+            return JToken.ReadFrom(jReader);
         }
         
         public virtual void EntityStart()
@@ -197,9 +255,6 @@ namespace NEP.Paranoia.Entities
 
         protected void UseAudio(float volume = 1f, float pitch = 1f, float spatial = 1f)
         {
-            if (!m_source)
-                m_source = gameObject.AddComponent<AudioSource>();
-            
             m_source.volume = volume;
             m_source.pitch = pitch;
             m_source.spatialBlend = spatial;
@@ -229,7 +284,7 @@ namespace NEP.Paranoia.Entities
             if (clips == null)
                 return;
             
-            AudioClip random = clips[UnityEngine.Random.Range(0, clips.Length)];
+            AudioClip random = clips[Random.Range(0, clips.Length)];
             
             m_source.clip = random;
             m_source.Play();
@@ -241,6 +296,19 @@ namespace NEP.Paranoia.Entities
                 Emit(clip);
             else
                 Paranoia.Logger.Warning($"Couldn't load non-existent bank sound {soundName}!");
+        }
+
+        protected void Emit(string[] clips)
+        {
+            if (!m_source)
+                return;
+
+            if (clips == null)
+                return;
+
+            string random = clips[Random.Range(0, clips.Length)];
+
+            Emit(AudioBank.Master[random]);
         }
 
         protected void SetInsanity(float insanity)

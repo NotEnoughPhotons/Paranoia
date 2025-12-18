@@ -18,19 +18,22 @@ namespace NEP.Paranoia.Entities
         {
             base.Awake();
 
+            Read("Bridge");
+
             m_blankbox = transform.Find("Blankbox").gameObject;
             m_mesh = transform.Find("Mesh").gameObject;
             m_indoorTrigger = transform.Find("IndoorTrigger").gameObject;
             m_outdoorTrigger = transform.Find("OutdoorTrigger").gameObject;
 
             m_blankbox.SetActive(false);
+            Disappear();
         }
 
         public override void EntityStart()
         {
             base.EntityStart();
 
-            SetPosition(AroundTarget(4f, 0f));
+            SetPosition(AroundTarget(m_radius, 0f));
         }
 
         protected override void EntityUpdate()

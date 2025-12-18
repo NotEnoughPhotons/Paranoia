@@ -13,7 +13,8 @@ namespace NEP.Paranoia.Entities
         protected override void Awake()
         {
             base.Awake();
-            SetInsanity(2.75f);
+            Read("CeilingMan");
+            Disappear();
         }
 
         public override void EntityStart()
@@ -21,20 +22,18 @@ namespace NEP.Paranoia.Entities
             base.EntityStart();
 
             Appear();
-            UseAudio();
-            SetSpatial(0.75f); // Let the player pinpoint location with audio
             
             // It's hard to tell what the "ceiling" is on a lot of levels.
             // For now just spawn him really high up (relative to the player) -
             // and allow him to be seen through walls.
-            Vector3 randomPoint = AroundTarget(100f);
+            Vector3 randomPoint = AroundTarget(m_radius);
             Vector3 position = randomPoint + Vector3.up * 100f;
             
             SetPosition(position);
             
             // RenderFirst();
             
-            Emit("Ceiling Man");
+            Emit(m_clips);
         }
 
         protected override void EntityUpdate()

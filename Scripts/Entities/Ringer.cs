@@ -38,9 +38,6 @@ namespace NEP.Paranoia.Entities
             base.EntityStart();
 
             Appear();
-            UseAudio();
-            SetMinDistance(0.1f);
-            SetMaxDistance(0.75f);
             
             Emit(AudioBank.RingerRingExternal);
             m_state = RingerState.Waiting;

@@ -15,7 +15,8 @@ namespace NEP.Paranoia.Entities
         protected override void Awake()
         {
             base.Awake();
-            SetInsanity(1.0f);
+            Read("Ambient");
+            Disappear();
         }
 
         public override void EntityStart()
@@ -23,10 +24,9 @@ namespace NEP.Paranoia.Entities
             base.EntityStart();
 
             Appear();
-            UseAudio();
-            SetSpatial(0f);
 
-            AudioClip clip = AudioBank.Ambience[Random.Range(0, AudioBank.Ambience.Length - 1)];
+            string clipName = m_clips[Random.Range(0, m_clips.Length - 1)];
+            AudioClip clip = AudioBank.Master[clipName];
 
             m_audioDuration = clip.length;
 

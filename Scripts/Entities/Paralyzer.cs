@@ -19,7 +19,8 @@ namespace NEP.Paranoia.Entities
         protected override void Awake()
         {
             base.Awake();
-            SetInsanity(4.0f);
+            Read("Paralyzer");
+            Disappear();
         }
 
         public override void EntityStart()
@@ -27,20 +28,17 @@ namespace NEP.Paranoia.Entities
             base.EntityStart();
 
             Appear();
-            UseAudio();
-            SetSpatial(0.75f);
             
-            Emit(AudioBank.Paralyzer);
-            
+            Emit(m_clips);
+
             // TODO:
             // Account for other noises
-            m_nextMove = AudioBank.Paralyzer.length;
+            string clipName = m_clips[Random.Range(0, m_clips.Length - 1)];
+            m_nextMove = AudioBank.Master[clipName].length;
 
             ParanoiaDirector.FreezePlayer();
 
-            m_speed = 1500f;
-
-            Vector3 pos = RandomSpherePoint(m_targetTransform.position, 50f);
+            Vector3 pos = RandomSpherePoint(m_targetTransform.position, m_radius);
             SetPosition(pos);
         }
 
@@ -56,7 +54,7 @@ namespace NEP.Paranoia.Entities
             {
                 m_timer = 0f;
                 Move();
-                Emit(AudioBank.Paralyzer);
+                Emit(m_clips);
             }
             
             if (DistanceToTarget() <= 5f)

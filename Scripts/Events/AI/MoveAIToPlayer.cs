@@ -23,6 +23,7 @@ namespace NEP.Paranoia.Events.AI
             m_navs = new List<BehaviourBaseNav>();
 
             base.Start();
+            Read("AIMoveToPlayer");
 
             // SetInsanityLevel(2f);
 
